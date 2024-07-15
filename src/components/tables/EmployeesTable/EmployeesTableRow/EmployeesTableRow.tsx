@@ -6,14 +6,17 @@ import EditIcon from '@mui/icons-material/Edit';
 
 type EmployeesTableRowProps = {
   employeesTableRowData: {
+    id: number;
     employeePhoto: string;
     fullName: string;
     phone: string;
     date: string;
   }[];
+  onEmployeeIcon: (id: number) => void;
 };
 
 const EmployeesTableRow: React.FC<EmployeesTableRowProps> = ({
+  onEmployeeIcon,
   employeesTableRowData,
 }) => {
   return employeesTableRowData.map((employee) => {
@@ -32,7 +35,10 @@ const EmployeesTableRow: React.FC<EmployeesTableRowProps> = ({
           <span>{employee.date}</span>
         </td>
         <td className={styles.actionsCell}>
-          <AccountBoxIcon className={styles.actionIcon} />
+          <AccountBoxIcon
+            className={styles.actionIcon}
+            onClick={() => onEmployeeIcon(employee.id)}
+          />
           <EditIcon className={styles.actionIcon} />
           <DeleteIcon className={styles.actionIcon} />
         </td>

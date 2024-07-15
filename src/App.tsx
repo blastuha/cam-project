@@ -16,8 +16,8 @@ function App() {
           <Route path={ROUTES.AUTH} element={<AuthPage />} />
           <Route path={ROUTES.HOME} element={<HomePage />} />
           <Route path={ROUTES.EMPLOYEES} element={<EmployeesPage />} />
-          <Route path={ROUTES.EMPLOYEE} element={<EmployeePage />} />
-          {/* <Route path="*" element={<Navigate to={ROUTES.POKEMONS} />} /> */}
+          <Route path={ROUTES.EMPLOYEE_WITH_ID} element={<EmployeePage />} />
+          {/* <Route path="*" element={<Navigate to={ROUTES.ERROR} />} /> */}
         </Route>
       </Routes>
     </>
