@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from './CompanyIcon.module.scss';
 
 export const CompanyIcon = () => {
   return (
     <svg
-      className=" icon-30"
+      className={styles.companyIcon}
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

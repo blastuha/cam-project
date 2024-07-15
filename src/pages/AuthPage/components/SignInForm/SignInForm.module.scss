@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+.signInForm {
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  label {
+    color: var(--text);
+  }
+}
