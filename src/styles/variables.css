@@ -1,0 +1,9 @@
+:root {
+  --text-gray-1: #9ba1a7;
+  --text-gray-2: rgb(138, 146, 166);
+  --text-blue-1: #3a57e8;
+  --text-dark-1: #212529
+
+  --button-hover: #3a57e818;
+  --background-1: #F2F3F8;
+}

@@ -1,0 +1,19 @@
+.employeesTable {
+  border-collapse: collapse; /* Удаляет отступы между ячейками */
+  width: 100%;
+}
+
+.tableTitleBlock {
+  padding: 16px;
+  background-color: #ffffff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  font-family: Inter, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 28.8px;
+  color: rgb(12, 17, 46);
+}

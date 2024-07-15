@@ -1,0 +1,57 @@
+.sidebarMenu {
+  margin-top: 40px;
+}
+
+.menuTitle {
+  font-family: Inter, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-dark-1);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-gray-1);
+
+  .navText {
+    font-family: Inter, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+      Segoe UI Symbol, Noto Color Emoji;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-gray-2);
+    transition: color 0.3s linear; /* Добавить плавный переход */
+  }
+
+  .navIcon {
+    width: 20px !important;
+    height: 20px !important;
+    color: var(--icon-color-gray);
+    transition: color 0.3s linear; /* Добавить плавный переход */
+  }
+
+  &:hover {
+    background-color: #3a57e818;
+    transition: all 0.3s linear;
+    color: var(--text-blue-1);
+
+    .navText {
+      color: var(--text-blue-1);
+      transition: all 0.1s linear;
+    }
+
+    .navIcon {
+      color: var(--text-blue-1);
+      transition: all 0.1s linear;
+    }
+  }
+}

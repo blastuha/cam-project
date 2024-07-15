@@ -1,0 +1,44 @@
+.employeesTableRow {
+  // display: flex;
+  // align-items: center;
+  background: #ffffff;
+  padding: 0px;
+  color: #232d42;
+  font-size: 16px;
+}
+
+td {
+  padding: 10px 14px;
+}
+
+.photoCell {
+  width: 40px;
+  height: 40px;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.fullNameCell {
+  min-width: 180px;
+}
+
+.numberCell {
+  min-width: 140px;
+}
+
+.dateCell {
+  min-width: 100px;
+}
+
+.actionsCell {
+  max-width: 160px;
+  gap: 4px;
+  cursor: pointer;
+
+  .actionIcon:not(:last-child) {
+    margin-right: 6px;
+  }
+}
