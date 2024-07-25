@@ -1,9 +1,28 @@
 :root {
+  --primary: #3a57e8;
+  --primary-light: #c4ccf8;
+  --primary-dark: #0048b2;
+  --primary-very-dark: #001f4d;
+
   --text-gray-1: #9ba1a7;
-  --text-gray-2: rgb(138, 146, 166);
-  --text-blue-1: #3a57e8;
-  --text-dark-1: #212529
+  --text-gray-2: #8a92a6;
+  --text-gray-3: #adb5bd;
+
+  --text-dark-1: #212529;
+  --text-dark-2: #232d42;
 
   --button-hover: #3a57e818;
-  --background-1: #F2F3F8;
+
+  --background-1: #f2f3f8;
+  --background-2: #ffffff;
+
+  --shadow-color: #001129;
+
+  --success: #1aa053;
+  --success-light: #d3ffb3;
+  --success-dark: #409900;
+
+  --error: #c03221;
+  --error-light: #f2d6d3;
+  --error-dark: #b20000;
 }

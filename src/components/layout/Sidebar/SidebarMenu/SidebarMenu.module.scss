@@ -34,28 +34,28 @@
     font-size: 16px;
     line-height: 24px;
     color: var(--text-gray-2);
-    transition: color 0.3s linear; /* Добавить плавный переход */
+    transition: color 0.3s linear;
   }
 
   .navIcon {
     width: 20px !important;
     height: 20px !important;
     color: var(--icon-color-gray);
-    transition: color 0.3s linear; /* Добавить плавный переход */
+    transition: color 0.3s linear;
   }
 
   &:hover {
     background-color: #3a57e818;
     transition: all 0.3s linear;
-    color: var(--text-blue-1);
+    color: var(--primary);
 
     .navText {
-      color: var(--text-blue-1);
+      color: var(--primary);
       transition: all 0.1s linear;
     }
 
     .navIcon {
-      color: var(--text-blue-1);
+      color: var(--primary);
       transition: all 0.1s linear;
     }
   }
