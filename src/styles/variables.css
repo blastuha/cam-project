@@ -4,19 +4,24 @@
   --primary-dark: #0048b2;
   --primary-very-dark: #001f4d;
 
+  --secondary: #6C757D;
+
   --text-gray-1: #9ba1a7;
   --text-gray-2: #8a92a6;
   --text-gray-3: #adb5bd;
+  --text-gray-4: #6C757D;
 
   --text-dark-1: #212529;
   --text-dark-2: #232d42;
+
+  --text-border: 
 
   --button-hover: #3a57e818;
 
   --background-1: #f2f3f8;
   --background-2: #ffffff;
 
-  --shadow-color: #001129;
+  --shadow-color: #00112940;
 
   --success: #1aa053;
   --success-light: #d3ffb3;

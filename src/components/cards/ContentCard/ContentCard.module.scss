@@ -1,0 +1,37 @@
+.card {
+  box-shadow: 0 10px 30px 0 var(--shadow-color);
+  background: var(--background-2);
+  border-radius: 8px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 16px 16px 0px 16px;
+}
+
+.headerTitle {
+  font-family: Inter, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
+  line-height: 125%;
+  color: var(--text-dark-2);
+}
+
+.headerAction {
+  display: flex;
+}
+
+.cardBody {
+  display: flex;
+  flex: 1 1 auto;
+  padding: 16px;
+}
+
+.headerFooter {
+  display: flex;
+}
