@@ -6,8 +6,8 @@ import EmployeesTableRow from '@components/tables/EmployeesTable/EmployeesTableR
 import { EmployeesTableHeader } from '@components/tables/EmployeesTable/EmployeesTableHeader/EmployeesTableHeader';
 import { useNavigate } from 'react-router-dom';
 import { employeesTableRowData } from '@utils/api/employeesTableRowData';
-import { MainCard } from '@components/cards/MainCard/MainCard';
 import { ContentCard } from '@components/cards/ContentCard/ContentCard';
+import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 
 export const EmployeesPage = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const EmployeesPage = () => {
         <ContentCard.Header>
           <ContentCard.HeaderTitle>Список сотрудников</ContentCard.HeaderTitle>
           <ContentCard.HeaderAction>
-            Добавить сотрудника
+            <BlueButton>Добавить сотрудника</BlueButton>
           </ContentCard.HeaderAction>
         </ContentCard.Header>
         <ContentCard.Body padding="16px 0 16px 0">
@@ -35,18 +35,6 @@ export const EmployeesPage = () => {
           </EmployeesTable>
         </ContentCard.Body>
       </ContentCard>
-      {/* <MainCard
-        headerContent={<div>Header</div>}
-        bodyContent={<div>Body</div>}
-      /> */}
-
-      {/* <EmployeesTable>
-        <EmployeesTableHeader />
-        <EmployeesTableRow
-          employeesTableRowData={employeesTableRowData}
-          onEmployeeIcon={handleEmpoloyeeIconClick}
-        />
-      </EmployeesTable> */}
     </div>
   );
 };

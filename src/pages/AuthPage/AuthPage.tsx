@@ -16,10 +16,7 @@ export const AuthPage = () => {
         </div>
         <h1>Sign in</h1>
         <SignInForm />
-        <a href="/forget" className={styles.forgetPassword}>
-          Забыли пароль?
-        </a>
-        <BlueButton text="Войти" />
+        <BlueButton>Войти</BlueButton>
       </div>
     </div>
   );

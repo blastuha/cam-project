@@ -1,17 +1,12 @@
 import React from 'react';
 import styles from './SignInForm.module.scss';
+import { FormGroup } from '@components/inputs/FormGroup/FormGroup';
 
 const SignInForm = () => {
   return (
     <form className={styles.signInForm}>
-      <div className={styles.formGroup}>
-        <label htmlFor="email">Email</label>
-        <input type="email" />
-      </div>
-      <div className={styles.formGroup}>
-        <label htmlFor="password">Password</label>
-        <input type="password" />
-      </div>
+      <FormGroup label="Email" htmlFor="email" />
+      <FormGroup label="Password" htmlFor="password" />
     </form>
   );
 };

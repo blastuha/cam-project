@@ -1,0 +1,18 @@
+.input {
+  color: var(--text-gray-2);
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid #6179ed;
+  box-shadow: 0 0 2px var(--text-gray-1);
+}

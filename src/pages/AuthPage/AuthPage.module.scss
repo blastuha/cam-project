@@ -8,7 +8,6 @@
   align-items: center;
   justify-content: center;
   min-width: 400px;
-  // background-color: aliceblue;
 
   h1 {
     font-weight: 500;
@@ -38,15 +37,4 @@
 .logoWrapper {
   width: 40px;
   height: 40px;
-}
-
-.forgetPassword {
-  font-family: 'Poppins', sans-serif;
-  color: var(--text-blue-1) !important;
-  box-sizing: border-box;
-  text-decoration: none;
-  margin-bottom: 10px;
-}
-
-.enterButton {
 }

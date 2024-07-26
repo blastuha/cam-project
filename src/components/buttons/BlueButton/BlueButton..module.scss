@@ -8,10 +8,11 @@
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   cursor: pointer;
   color: #ffffff;
-  background-color: var(--text-blue-1);
+  background-color: var(--primary);
   border-color: var(--bs-primary);
 
   &:hover {
-    background-color: #314ac5;
+    background-color: var(--button-hover);
+    transition: all linear 0.3s;
   }
 }

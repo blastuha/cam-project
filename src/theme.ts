@@ -1,9 +1,7 @@
 import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
-import { linkTheme } from '@styles/components/linkTheme';
+import { blueButtonStyles } from '@styles/components/blueButton';
 
-// Create a theme instance.
-export const theme = createTheme({
+const baseTheme = createTheme({
   typography: {
     fontSize: 14,
     fontWeightRegular: 400,
@@ -14,17 +12,27 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: '#3a57e8',
+      light: '#c4ccf8',
+      dark: '#0048b2',
+      veryDark: '#001f4d',
+    },
+    secondary: {
+      main: '#6c757d',
     },
     background: {
       default: '#F2F3F8',
+      paper: '#ffffff',
     },
     error: {
-      main: red.A400,
+      main: '#c03221',
     },
   },
+});
 
+export const theme = createTheme({
+  ...baseTheme,
   components: {
-    MuiLink: linkTheme,
+    MuiButton: blueButtonStyles(baseTheme),
   },
 });
 
