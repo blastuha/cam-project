@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './AuthPage.module.scss';
 import SignInForm from './components/SignInForm/SignInForm';
 import { CompanyIcon } from '@components/icons';
+import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 
 export const AuthPage = () => {
   return (
@@ -15,6 +16,10 @@ export const AuthPage = () => {
         </div>
         <h1>Sign in</h1>
         <SignInForm />
+        <a href="/forget" className={styles.forgetPassword}>
+          Забыли пароль?
+        </a>
+        <BlueButton text="Войти" />
       </div>
     </div>
   );

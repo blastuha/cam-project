@@ -7,24 +7,46 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 500px;
-  background-color: aliceblue;
+  min-width: 400px;
+  // background-color: aliceblue;
+
+  h1 {
+    font-weight: 500;
+    line-height: 1.2;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-align: center !important;
+  }
 }
 
 .companyBlock {
   display: flex;
   align-items: center;
+  align-self: flex-start;
   gap: 12px;
   margin-bottom: 16px;
 
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 24px;
+  span {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
 
 .logoWrapper {
   width: 40px;
   height: 40px;
+}
+
+.forgetPassword {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-blue-1) !important;
+  box-sizing: border-box;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.enterButton {
 }
