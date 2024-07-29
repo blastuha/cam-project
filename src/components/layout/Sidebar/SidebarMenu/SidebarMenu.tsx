@@ -12,7 +12,11 @@ export const SidebarMenu = () => {
       {SIDEBAR_MENU.map((navItem) => {
         const NavIcon = navItem.logo;
         return (
-          <NavLink to={navItem.path} className={styles.navItem}>
+          <NavLink
+            to={navItem.path}
+            className={styles.navItem}
+            key={navItem.title}
+          >
             <NavIcon className={styles.navIcon} />
             <span className={styles.navText}>{navItem.title}</span>
           </NavLink>
