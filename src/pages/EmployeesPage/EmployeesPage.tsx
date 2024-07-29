@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './EmployeesPage.module.scss';
 import { EmployeesTable } from '@components/tables/EmployeesTable/EmployeesTable';
 
 import { EmployeesTableBody } from '@components/tables/EmployeesTable/EmployeesTableRow/EmployeesTableRow';
@@ -8,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { employeesTableRowData } from '@utils/api/employeesTableRowData';
 import { ContentCard } from '@components/cards/ContentCard/ContentCard';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
+import { PageContainer } from '@components/containers/PageContainer/PageContainer';
 
 export const EmployeesPage = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export const EmployeesPage = () => {
   };
 
   return (
-    <div className={styles.employeesPage}>
+    <PageContainer>
       <ContentCard>
         <ContentCard.Header>
           <ContentCard.HeaderTitle>Список сотрудников</ContentCard.HeaderTitle>
@@ -35,6 +35,6 @@ export const EmployeesPage = () => {
           </EmployeesTable>
         </ContentCard.Body>
       </ContentCard>
-    </div>
+    </PageContainer>
   );
 };
