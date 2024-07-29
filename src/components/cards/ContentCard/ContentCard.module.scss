@@ -35,3 +35,12 @@
 .headerFooter {
   display: flex;
 }
+
+// body styles
+
+.addEmployeeBody {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+}

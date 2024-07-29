@@ -5,15 +5,17 @@ export const FormGroup = ({
   htmlFor,
   placeholder,
   label,
+  inputType,
 }: {
   htmlFor: string;
   placeholder?: string;
   label: string;
+  inputType: string;
 }) => {
   return (
     <div className={styles.formGroup}>
       <label htmlFor={htmlFor}>{label}</label>
-      <input type="password" placeholder={placeholder} />
+      <input id={htmlFor} type={inputType} placeholder={placeholder} />
     </div>
   );
 };
