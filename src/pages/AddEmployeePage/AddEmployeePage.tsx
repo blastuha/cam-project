@@ -16,8 +16,8 @@ export const AddEmployeePage = () => {
   };
 
   return (
-    <PageContainer>
-      <ContentCard>
+    <PageContainer className="addEmployeePage">
+      <ContentCard className="addEmployeeCard">
         <ContentCard.Header>
           <ContentCard.HeaderTitle>
             Добавление сотрудника
@@ -43,7 +43,7 @@ export const AddEmployeePage = () => {
               placeholder="+7-999-333-22-00"
             />
             <FormGroup htmlFor="employeeDate" inputType="date" label="Дата" />
-            <FormGroup htmlFor="test" inputType="text" label="Не придумал" />
+            <FormGroup htmlFor="test" inputType="text" label="Должность" />
             <BlueButton onClick={() => {}}>Добавить</BlueButton>
           </form>
         </ContentCard.Body>

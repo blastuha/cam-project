@@ -12,8 +12,12 @@ import { PageContainer } from '@components/containers/PageContainer/PageContaine
 export const EmployeesPage = () => {
   const navigate = useNavigate();
 
-  const handleEmpoloyeeIconClick = (employeeId: number) => {
+  const handleEmpoloyeeIcon = (employeeId: number) => {
     navigate(`/employee/${employeeId}`);
+  };
+
+  const handleAddEmployee = () => {
+    navigate(`/employees/add-employee`);
   };
 
   return (
@@ -22,7 +26,9 @@ export const EmployeesPage = () => {
         <ContentCard.Header>
           <ContentCard.HeaderTitle>Список сотрудников</ContentCard.HeaderTitle>
           <ContentCard.HeaderAction>
-            <BlueButton>Добавить сотрудника</BlueButton>
+            <BlueButton onClick={handleAddEmployee}>
+              Добавить сотрудника
+            </BlueButton>
           </ContentCard.HeaderAction>
         </ContentCard.Header>
         <ContentCard.Body padding="16px 0 16px 0">
@@ -30,7 +36,7 @@ export const EmployeesPage = () => {
             <EmployeesTableHeader />
             <EmployeesTableBody
               employeesTableRowData={employeesTableRowData}
-              onEmployeeIcon={handleEmpoloyeeIconClick}
+              onEmployeeIcon={handleEmpoloyeeIcon}
             />
           </EmployeesTable>
         </ContentCard.Body>

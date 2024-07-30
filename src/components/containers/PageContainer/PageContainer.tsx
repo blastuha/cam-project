@@ -1,6 +1,15 @@
 import React from 'react';
 import styles from './PageContainer.module.scss';
+import clsx from 'clsx';
 
-export const PageContainer = ({ children }: { children: React.ReactNode }) => {
-  return <div className={styles.pageContainer}>{children}</div>;
+export const PageContainer = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div className={clsx(styles.pageContainer, className)}>{children}</div>
+  );
 };

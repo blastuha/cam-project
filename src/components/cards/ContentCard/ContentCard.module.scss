@@ -2,6 +2,7 @@
   box-shadow: 0 10px 30px 0 var(--shadow-color);
   background: var(--background-2);
   border-radius: 8px;
+  margin: 0 auto;
 }
 
 .cardHeader {
@@ -36,11 +37,13 @@
   display: flex;
 }
 
-// body styles
+// addEmployeeCard styles
+
+.addEmployeeCard {
+  max-width: 600px;
+}
 
 .addEmployeeBody {
-  width: 600px;
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
 }

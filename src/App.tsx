@@ -20,8 +20,12 @@ function App() {
           <Route element={<Layout />}>
             <Route path={ROUTES.HOME} element={<HomePage />} />
             <Route path={ROUTES.EMPLOYEES} element={<EmployeesPage />} />
+            <Route
+              path={ROUTES.ADD_EMPLOYEE}
+              element={<AddEmployeePage />}
+            ></Route>
             <Route path={ROUTES.EMPLOYEE_WITH_ID} element={<EmployeePage />} />
-            <Route path={ROUTES.ADD_EMPLOYEE} element={<AddEmployeePage />} />
+
             {/* <Route path="*" element={<Navigate to={ROUTES.ERROR} />} /> */}
           </Route>
         </Routes>

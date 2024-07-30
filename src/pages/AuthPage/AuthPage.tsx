@@ -16,7 +16,7 @@ export const AuthPage = () => {
         </div>
         <h1>Sign in</h1>
         <SignInForm />
-        <BlueButton>Войти</BlueButton>
+        <BlueButton onClick={() => {}}>Войти</BlueButton>
       </div>
     </div>
   );

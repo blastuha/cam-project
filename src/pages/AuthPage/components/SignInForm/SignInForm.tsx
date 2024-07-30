@@ -5,8 +5,8 @@ import { FormGroup } from '@components/inputs/FormGroup/FormGroup';
 const SignInForm = () => {
   return (
     <form className={styles.signInForm}>
-      <FormGroup label="Email" htmlFor="email" />
-      <FormGroup label="Password" htmlFor="password" />
+      <FormGroup label="Email" htmlFor="email" inputType="email" />
+      <FormGroup label="Password" htmlFor="password" inputType="password" />
     </form>
   );
 };

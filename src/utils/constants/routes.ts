@@ -3,5 +3,5 @@ export const ROUTES = {
   AUTH: '/auth',
   EMPLOYEES: '/employees',
   EMPLOYEE_WITH_ID: '/employee/:id',
-  ADD_EMPLOYEE: '/add-employee',
+  ADD_EMPLOYEE: 'employees/add-employee',
 };
