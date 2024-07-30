@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import styles from './AuthPage.module.scss';
 import SignInForm from './components/SignInForm/SignInForm';
 import { CompanyIcon } from '@components/icons';
@@ -7,14 +7,30 @@ import { useQuery } from '@tanstack/react-query';
 import { logIn } from '@api/index';
 
 export const AuthPage = () => {
-  // const { data, isLoading } = useQuery({
-  //   queryKey: ['auth'],
-  //   queryFn: () => logIn(),
-  // });
+  const [loginData, setLoginData] = React.useState({
+    username: '',
+    password: '',
+  });
 
-  const handleAuth = async () => {
-    console.log(await logIn());
+  const handleLogIn = async () => {
+    const response = await logIn({
+      username: loginData.username,
+      password: loginData.password,
+    });
+    const token = response.data;
+    console.log('token', token);
   };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    console.log('name,value', { name: name, value: value });
+    setLoginData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  console.log('loginData', loginData);
 
   return (
     <div className={styles.authPage}>
@@ -26,8 +42,8 @@ export const AuthPage = () => {
           <span>CompanyName</span>
         </div>
         <h1>Sign in</h1>
-        <SignInForm />
-        <BlueButton onClick={handleAuth}>Войти</BlueButton>
+        <SignInForm onChange={handleInputChange} />
+        <BlueButton onClick={handleLogIn}>Войти</BlueButton>
       </div>
     </div>
   );

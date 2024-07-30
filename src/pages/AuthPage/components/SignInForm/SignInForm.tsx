@@ -2,11 +2,25 @@ import React from 'react';
 import styles from './SignInForm.module.scss';
 import { FormGroup } from '@components/inputs/FormGroup/FormGroup';
 
-const SignInForm = () => {
+const SignInForm = ({
+  onChange,
+}: {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
   return (
     <form className={styles.signInForm}>
-      <FormGroup label="Email" htmlFor="email" inputType="email" />
-      <FormGroup label="Password" htmlFor="password" inputType="password" />
+      <FormGroup
+        label="Username"
+        htmlFor="username"
+        inputType="text"
+        onChange={onChange}
+      />
+      <FormGroup
+        label="Password"
+        htmlFor="password"
+        inputType="password"
+        onChange={onChange}
+      />
     </form>
   );
 };

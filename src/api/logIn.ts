@@ -1,16 +1,28 @@
 import React from 'react';
-import { API_URL } from '@utils/constants';
 import axios from 'axios';
 
-export const logIn = () => {
-  // const url = `${API_URL}/user/login`;
+type LogInReponse = {
+  success: boolean;
+  data: {
+    token: string;
+  };
+  error: null | string;
+};
+
+export const logIn = ({
+  username,
+  password,
+}: {
+  username: string;
+  password: string;
+}) => {
   const url = '/api/v1/user/login';
 
-  return axios.post(
+  return axios.post<LogInReponse>(
     url,
     {
-      username: 'root',
-      password: 'root',
+      username,
+      password,
     },
     {
       headers: {
