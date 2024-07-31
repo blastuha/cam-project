@@ -3,8 +3,7 @@ import styles from './AuthPage.module.scss';
 import SignInForm from './components/SignInForm/SignInForm';
 import { CompanyIcon } from '@components/icons';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
-import { useQuery } from '@tanstack/react-query';
-import { logIn } from '@api/index';
+import { logIn } from '@api/logIn';
 
 export const AuthPage = () => {
   const [loginData, setLoginData] = React.useState({
@@ -12,13 +11,15 @@ export const AuthPage = () => {
     password: '',
   });
 
-  const handleLogIn = async () => {
-    const response = await logIn({
-      username: loginData.username,
-      password: loginData.password,
-    });
-    const token = response.data;
-    console.log('token', token);
+  const handleLoginTest = async () => {
+    try {
+      await logIn({
+        username: loginData.username,
+        password: loginData.password,
+      });
+    } catch (err) {
+      console.warn('Login error:', err);
+    }
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +44,7 @@ export const AuthPage = () => {
         </div>
         <h1>Sign in</h1>
         <SignInForm onChange={handleInputChange} />
-        <BlueButton onClick={handleLogIn}>Войти</BlueButton>
+        <BlueButton onClick={handleLoginTest}>Войти</BlueButton>
       </div>
     </div>
   );
