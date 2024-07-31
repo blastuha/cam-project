@@ -10,7 +10,7 @@ import { AuthPage } from './pages/AuthPage/AuthPage';
 import { Layout } from '@components/layout/Layout';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
-import { Query, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
 

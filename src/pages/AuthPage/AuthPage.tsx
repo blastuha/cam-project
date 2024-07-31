@@ -4,6 +4,7 @@ import SignInForm from './components/SignInForm/SignInForm';
 import { CompanyIcon } from '@components/icons';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 import { logIn } from '@api/logIn';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthPage = () => {
   const [loginData, setLoginData] = React.useState({
@@ -11,12 +12,19 @@ export const AuthPage = () => {
     password: '',
   });
 
+  const navigate = useNavigate();
+
   const handleLoginTest = async () => {
     try {
-      await logIn({
+      const response = await logIn({
         username: loginData.username,
         password: loginData.password,
       });
+      console.log('Login successful:', response);
+
+      if (response.success) {
+        navigate('/');
+      }
     } catch (err) {
       console.warn('Login error:', err);
     }

@@ -29,8 +29,10 @@ export const logIn = async ({
     const response = await userApi.login(loginSchema);
 
     const token = response.data.data.token;
+    const expiresAt = new Date().getTime() + 5000 * 1000;
+
     if (token) {
-      localStorage.setItem('csrfToken', token);
+      localStorage.setItem('csrfToken', JSON.stringify({ token, expiresAt }));
       return response.data;
     } else {
       throw new Error('Login failed: No token returned');
