@@ -1,7 +1,7 @@
 import { ResponseSchema200 } from 'generated/openapi/main-api';
 
 import { AxiosResponse } from 'axios';
-import { userApi } from './api';
+import { userApi } from '../utils/api/api';
 
 export const getMe = async () => {
   try {

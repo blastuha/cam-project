@@ -8,8 +8,14 @@ import { employeesTableRowData } from '@utils/api/employeesTableRowData';
 import { ContentCard } from '@components/cards/ContentCard/ContentCard';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 import { PageContainer } from '@components/containers/PageContainer/PageContainer';
+import { getAllEmployees } from '@api/getAllEmployees';
+import { VideoGetAllSchema } from 'generated/openapi/main-api';
 
 export const EmployeesPage = () => {
+  const [allEmployees, setAllEmployees] = React.useState<VideoGetAllSchema[]>(
+    []
+  );
+
   const navigate = useNavigate();
 
   const handleEmpoloyeeIcon = (employeeId: number) => {
@@ -19,6 +25,21 @@ export const EmployeesPage = () => {
   const handleAddEmployee = () => {
     navigate(`/employees/add-employee`);
   };
+
+  React.useEffect(() => {
+    const fetchAllEmployees = async () => {
+      try {
+        const response = await getAllEmployees();
+        setAllEmployees(response?.data || []);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchAllEmployees();
+  }, []);
+
+  console.log('allEmployees', allEmployees);
 
   return (
     <PageContainer>

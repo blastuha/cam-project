@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Configuration, UserApi } from '../generated/openapi/main-api';
+import { Configuration, UserApi } from '../../generated/openapi/main-api';
 
 export const basePath = import.meta.env.BASE_URL;
 
@@ -16,7 +16,6 @@ api.interceptors.request.use(function (config) {
 
   config.headers['accept'] = 'application/json';
 
-  console.log('Token:', token);
   if (token) {
     config.headers['Authorization'] = `Bearer ${token.replace(/"/g, '')}`; // Добавление токена в заголовок
   }

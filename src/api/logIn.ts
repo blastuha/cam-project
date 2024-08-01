@@ -1,9 +1,5 @@
-import {
-  Configuration,
-  LoginSchema,
-  UserApi,
-} from '../generated/openapi/main-api';
-import { api, basePath } from './api';
+import { LoginSchema } from '../generated/openapi/main-api';
+import { userApi } from '../utils/api/api';
 
 export const logIn = async ({
   username,
@@ -12,14 +8,6 @@ export const logIn = async ({
   username: string;
   password: string;
 }) => {
-  const userApi = new UserApi(
-    new Configuration({
-      basePath,
-    }),
-    basePath,
-    api
-  );
-
   const loginSchema: LoginSchema = {
     username,
     password,
