@@ -19,6 +19,9 @@ export const AddEmployeePage = () => {
       is_active: true,
       description: '',
       image: '',
+      // id: '',
+      // date_joined: '',
+      // embedding_model: '',
     });
 
   console.log('newEmployeeSchema', newEmployeeSchema);
@@ -47,9 +50,10 @@ export const AddEmployeePage = () => {
   };
 
   const handleSelectChange = (event: SelectChangeEvent) => {
+    console.log('event.target.value', event.target.value);
     setNewEmployeeSchema((prevState) => ({
       ...prevState,
-      is_active: event.target.value === 'true', // Преобразуем строку в логическое значение
+      is_active: event.target.value === 'true' ? true : false,
     }));
   };
 
