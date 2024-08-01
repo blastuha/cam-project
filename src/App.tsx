@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ROUTES } from './utils/constants/';
 import './styles/App.css';
-// import './styles/variables.css';
+import './styles/variables.css';
 import { HomePage } from './pages/HomePage/HomePage';
 import { EmployeesPage } from './pages/EmployeesPage/EmployeesPage';
 import { EmployeePage } from './pages/EmployeePage/EmployeePage';

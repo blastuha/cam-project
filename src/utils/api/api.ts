@@ -17,7 +17,7 @@ api.interceptors.request.use(function (config) {
   config.headers['accept'] = 'application/json';
 
   if (token) {
-    config.headers['Authorization'] = `Bearer ${token.replace(/"/g, '')}`; // Добавление токена в заголовок
+    config.headers['Authorization'] = `Bearer ${token.replace(/"/g, '')}`; // Добавление токена в заголовок + удаление кавычек
   }
   return config;
 });

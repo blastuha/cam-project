@@ -7,12 +7,24 @@ import React from 'react';
 import styles from './AddEmployeePage.module.scss';
 import { ImageContainer } from '@components/containers/ImageContainer/ImageContainer';
 import { PhotoUploadInput } from '@components/inputs/PhotoUploadInput/PhotoUploadInput';
+import { UserGetSchema } from 'generated/openapi/main-api';
 
 export const AddEmployeePage = () => {
-  const [uploadedPhoto, setUploadedPhoto] = React.useState(loadPhotoEmployee);
+  // const [uploadedPhoto, setUploadedPhoto] = React.useState(loadPhotoEmployee);
+  const [newEmployeeSchema, setNewEmployeeSchema] =
+    React.useState<UserGetSchema>({
+      first_name: '',
+      last_name: '',
+      is_active: true,
+      description: '',
+      image: '',
+    });
 
   const handlePhotoUpload = (photo: string) => {
-    setUploadedPhoto(photo);
+    setNewEmployeeSchema((prevState) => ({
+      ...prevState,
+      image: photo,
+    }));
   };
 
   return (

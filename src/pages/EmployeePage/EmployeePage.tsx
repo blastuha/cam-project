@@ -21,9 +21,9 @@ export const EmployeePage = () => {
         />
       </div>
 
-      <p className="">{employeeData?.fullName}</p>
-      <p className="">{employeeData?.date}</p>
-      <p className="">{employeeData?.phone}</p>
+      <p>{employeeData?.fullName}</p>
+      <p>{employeeData?.date}</p>
+      <p>{employeeData?.phone}</p>
     </div>
   );
 };
