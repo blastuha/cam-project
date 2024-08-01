@@ -8,12 +8,18 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+  // withCredentials: true,
 });
 
 api.interceptors.request.use(function (config) {
-  const token = localStorage.getItem('csrfToken');
-  if (token) config.headers['x-csrftoken'] = token;
+  const token = localStorage.getItem('token');
+
+  config.headers['accept'] = 'application/json';
+
+  console.log('Token:', token);
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token.replace(/"/g, '')}`; // Добавление токена в заголовок
+  }
   return config;
 });
 

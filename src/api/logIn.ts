@@ -31,7 +31,7 @@ export const logIn = async ({
     const token = response.data.data.token;
 
     if (token) {
-      localStorage.setItem('csrfToken', JSON.stringify(token));
+      localStorage.setItem('token', JSON.stringify(token));
       return response.data;
     } else {
       throw new Error('Login failed: No token returned');

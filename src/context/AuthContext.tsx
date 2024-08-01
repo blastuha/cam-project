@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '@api/getMe';
-import { UserMeSchema } from '../generated/openapi/main-api/api'; // Исправить путь относительно текущего файла
+import { UserMeSchema } from '../generated/openapi/main-api/api';
 
-interface AuthContextType {
+export interface AuthContextType {
   user: UserMeSchema | null;
   loading: boolean;
 }
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const data = await getMe();
         setUser(data);
       } catch (error) {
-        navigate('/auth'); // Перенаправление на страницу авторизации
+        navigate('/auth');
       } finally {
         setLoading(false);
       }
