@@ -11,24 +11,26 @@ export function MuiSelect({
   onChange,
   value,
   labelId,
+  label, // Добавляем label как параметр
 }: {
   value: string;
-  children: React.ReactNode;
   selectItems: {
     text: string;
     value: string;
   }[];
   onChange: (event: SelectChangeEvent) => void;
   labelId: string;
+  label: string;
 }) {
   return (
     <Box sx={{ minWidth: 120, outline: 'none' }}>
-      <FormControl fullWidth>
-        <InputLabel id={labelId ? labelId : 'labelId'}>Статус</InputLabel>
+      <FormControl fullWidth sx={{ minWidth: 120, outline: 'none' }}>
+        <InputLabel id={labelId}>{label}</InputLabel>
         <Select
-          labelId="select"
-          id={`${labelId ? labelId : 'labelId'}`}
+          labelId={labelId}
+          id={labelId}
           value={value}
+          label={label}
           onChange={onChange}
           sx={{
             '&.MuiOutlinedInput-root': {
@@ -45,7 +47,9 @@ export function MuiSelect({
           }}
         >
           {selectItems.map((item) => (
-            <MenuItem value={item.value}>{item.text}</MenuItem>
+            <MenuItem key={item.value} value={item.value}>
+              {item.text}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>

@@ -9,7 +9,7 @@ import { ImageContainer } from '@components/containers/ImageContainer/ImageConta
 import { PhotoUploadInput } from '@components/inputs/PhotoUploadInput/PhotoUploadInput';
 import { UserGetSchema } from 'generated/openapi/main-api';
 import { MuiSelect } from '@components/selects/MuiSelect';
-import { validateHeaderName } from 'http';
+import { SelectChangeEvent } from '@mui/material';
 
 export const AddEmployeePage = () => {
   const [newEmployeeSchema, setNewEmployeeSchema] =
@@ -43,6 +43,13 @@ export const AddEmployeePage = () => {
     setNewEmployeeSchema((prevState) => ({
       ...prevState,
       last_name: event.target.value,
+    }));
+  };
+
+  const handleSelectChange = (event: SelectChangeEvent) => {
+    setNewEmployeeSchema((prevState) => ({
+      ...prevState,
+      is_active: event.target.value === 'true', // Преобразуем строку в логическое значение
     }));
   };
 
@@ -83,7 +90,17 @@ export const AddEmployeePage = () => {
               label="Фамилия"
               onChange={handleLastNameChange}
             />
-            <MuiSelect selectItems={selectItems} />
+            <MuiSelect
+              selectItems={selectItems}
+              onChange={handleSelectChange}
+              value={
+                newEmployeeSchema?.is_active
+                  ? newEmployeeSchema?.is_active?.toString()
+                  : ''
+              }
+              labelId="status"
+              label="Статус" // Передаем label
+            />
             {/* <FormGroup htmlFor="employeeDate" inputType="date" label="Дата" />
             <FormGroup htmlFor="test" inputType="text" label="Должность" /> */}
             <BlueButton onClick={() => {}}>Добавить</BlueButton>
