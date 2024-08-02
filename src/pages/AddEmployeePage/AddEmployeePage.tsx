@@ -9,7 +9,13 @@ import { ImageContainer } from '@components/containers/ImageContainer/ImageConta
 import { PhotoUploadInput } from '@components/inputs/PhotoUploadInput/PhotoUploadInput';
 import { UserGetSchema } from 'generated/openapi/main-api';
 import { MuiSelect } from '@components/selects/MuiSelect';
-import { SelectChangeEvent } from '@mui/material';
+import { SelectChangeEvent, TextField } from '@mui/material';
+import { createEmployee } from '@api/createEmployee';
+
+const selectItems = [
+  { text: 'Активный', value: 'true' },
+  { text: 'Неактивный', value: 'false' },
+];
 
 export const AddEmployeePage = () => {
   const [newEmployeeSchema, setNewEmployeeSchema] =
@@ -57,10 +63,35 @@ export const AddEmployeePage = () => {
     }));
   };
 
-  const selectItems = [
-    { text: 'Активный', value: 'true' },
-    { text: 'Неактивный', value: 'false' },
-  ];
+  const handleDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNewEmployeeSchema((prevState) => ({
+      ...prevState,
+      description: event.target.value,
+    }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const response = await createEmployee({
+        firstName: newEmployeeSchema.first_name || null,
+        lastName: newEmployeeSchema.last_name || null,
+        isActive: newEmployeeSchema.is_active || false,
+        description: newEmployeeSchema.description || null,
+        image: newEmployeeSchema.image || null,
+      });
+
+      if (response?.success) {
+        console.log('Пользователь успешно создан:', response.data);
+      } else {
+        console.error('Ошибка при создании пользователя:', response?.error);
+      }
+    } catch (error) {
+      console.error('Ошибка при создании пользователя:', error);
+    }
+  };
 
   return (
     <PageContainer className="addEmployeePage">
@@ -81,7 +112,7 @@ export const AddEmployeePage = () => {
             </div>
           </div>
 
-          <form className={styles.employeeForm}>
+          <form className={styles.employeeForm} onSubmit={handleSubmit}>
             <FormGroup
               htmlFor="employeeName"
               inputType="text"
@@ -105,9 +136,18 @@ export const AddEmployeePage = () => {
               labelId="status"
               label="Статус" // Передаем label
             />
-            {/* <FormGroup htmlFor="employeeDate" inputType="date" label="Дата" />
-            <FormGroup htmlFor="test" inputType="text" label="Должность" /> */}
-            <BlueButton onClick={() => {}}>Добавить</BlueButton>
+            <TextField
+              id="description"
+              label="Описание"
+              multiline
+              rows={4} // You can adjust the number of rows as needed
+              variant="outlined"
+              value={newEmployeeSchema.description}
+              onChange={handleDescriptionChange}
+              fullWidth
+            />
+
+            <BlueButton type="submit">Добавить</BlueButton>
           </form>
         </ContentCard.Body>
       </ContentCard>

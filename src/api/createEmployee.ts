@@ -1,4 +1,3 @@
-import React from 'react';
 import { userApi } from '@utils/api/api';
 
 export const createEmployee = async ({
@@ -23,6 +22,7 @@ export const createEmployee = async ({
       image: image,
     };
     const response = await userApi.create(newEmployeeSchema);
+    console.log('response.OK');
     return response.data;
   } catch (err) {
     console.error(err);

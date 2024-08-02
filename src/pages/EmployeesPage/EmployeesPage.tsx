@@ -16,6 +16,8 @@ export const EmployeesPage = () => {
     []
   );
 
+  console.log('allEmployees', allEmployees);
+
   const navigate = useNavigate();
 
   const handleEmpoloyeeIcon = (employeeId: number) => {
@@ -47,7 +49,7 @@ export const EmployeesPage = () => {
         <ContentCard.Header>
           <ContentCard.HeaderTitle>Список сотрудников</ContentCard.HeaderTitle>
           <ContentCard.HeaderAction>
-            <BlueButton onClick={handleAddEmployee}>
+            <BlueButton type="button" onClick={handleAddEmployee}>
               Добавить сотрудника
             </BlueButton>
           </ContentCard.HeaderAction>
