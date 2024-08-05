@@ -16,3 +16,12 @@ th {
   line-height: 24px;
   color: var(--text-gray-1);
 }
+
+th:nth-last-child(2) {
+  text-align: center;
+}
+
+th:last-child {
+  width: 115px;
+  // text-align: center;
+}

@@ -26,6 +26,9 @@ const baseTheme = createTheme({
     error: {
       main: '#c03221',
     },
+    success: {
+      main: '#1aa053',
+    },
   },
 });
 

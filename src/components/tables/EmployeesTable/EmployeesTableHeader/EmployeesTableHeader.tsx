@@ -1,15 +1,15 @@
 import React from 'react';
 import styles from './EmployeesTableHeader.module.scss';
 
+const headerCells = ['Имя', 'Фамилия', 'Статус', 'Действия'];
+
 export const EmployeesTableHeader = () => {
   return (
     <thead className={styles.tableHeader}>
       <tr>
-        <th>Фото</th>
-        <th>ФИО</th>
-        <th>Телефон</th>
-        <th>Дата</th>
-        <th>Действия</th>
+        {headerCells.map((cell) => {
+          return <th key={cell}>{cell}</th>;
+        })}
       </tr>
     </thead>
   );

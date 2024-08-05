@@ -9,34 +9,33 @@ td {
   padding: 10px 14px;
 }
 
-.photoCell {
-  width: 40px;
-  height: 40px;
-
-  img {
-    width: 40px;
-    height: 40px;
-  }
+.firstNameCell {
+  min-width: 120px;
 }
 
-.fullNameCell {
-  min-width: 180px;
+.lastNameCell {
+  min-width: 120px;
 }
 
-.numberCell {
-  min-width: 140px;
-}
-
-.dateCell {
-  min-width: 100px;
+.statusCell {
+  text-align: center;
+  width: 200px;
 }
 
 .actionsCell {
+  display: flex;
+  gap: 6px;
   height: 100%;
-  max-width: 160px;
+  width: 115px;
   cursor: pointer;
-
-  .actionIcon:not(:last-child) {
-    margin-right: 6px;
-  }
 }
+
+// .photoCell {
+//   width: 40px;
+//   height: 40px;
+
+//   img {
+//     width: 40px;
+//     height: 40px;
+//   }
+// }

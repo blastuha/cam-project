@@ -3,43 +3,44 @@ import styles from './EmployeesTableRow.module.scss';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import EditIcon from '@mui/icons-material/Edit';
+import { UserGetAllSchema } from 'generated/openapi/main-api';
+import { Chip } from '@mui/material';
 
 type EmployeesTableBodyProps = {
-  employeesTableRowData: {
-    id: number;
-    employeePhoto: string;
-    fullName: string;
-    phone: string;
-    date: string;
-  }[];
-  onEmployeeIcon: (id: number) => void;
+  allEmployees: UserGetAllSchema[];
+  onEmployeeIcon: (id: number | undefined) => void;
 };
 
 export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
   onEmployeeIcon,
-  employeesTableRowData,
+  allEmployees,
 }) => {
   return (
     <tbody>
-      {employeesTableRowData.map((employee) => {
+      {allEmployees.map((employee) => {
         return (
           <tr className={styles.employeesTableRow} key={employee.id}>
-            <td className={styles.photoCell}>
-              <img src={employee.employeePhoto} alt="photo" />
+            {/* <td className={styles.photoCell}>
+              <img src={employee.} alt="photo" />
+            </td> */}
+            <td className={styles.firstNameCell}>
+              <span>{employee.first_name}</span>
             </td>
-            <td className={styles.fullNameCell}>
-              <span>{employee.fullName}</span>
+            <td className={styles.lastNameCell}>
+              <span>{employee.last_name}</span>
             </td>
-            <td className={styles.numberCell}>
-              <span>{employee.phone}</span>
-            </td>
-            <td className={styles.dateCell}>
-              <span>{employee.date}</span>
+            <td className={styles.statusCell}>
+              {/* <span> */}
+              <Chip
+                label={employee.is_active ? 'Активен' : 'Выключен'}
+                color={employee.is_active ? 'success' : 'error'}
+              />
+              {/* </span> */}
             </td>
             <td className={styles.actionsCell}>
               <AccountBoxIcon
                 className={styles.actionIcon}
-                onClick={() => onEmployeeIcon(employee.id)}
+                onClick={() => onEmployeeIcon(Number(employee?.id))}
               />
               <EditIcon className={styles.actionIcon} />
               <DeleteIcon className={styles.actionIcon} />

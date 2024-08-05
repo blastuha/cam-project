@@ -25,9 +25,6 @@ export const AddEmployeePage = () => {
       is_active: true,
       description: '',
       image: '',
-      // id: '',
-      // date_joined: '',
-      // embedding_model: '',
     });
 
   console.log('newEmployeeSchema', newEmployeeSchema);
@@ -134,13 +131,13 @@ export const AddEmployeePage = () => {
                   : ''
               }
               labelId="status"
-              label="Статус" // Передаем label
+              label="Статус"
             />
             <TextField
               id="description"
               label="Описание"
               multiline
-              rows={4} // You can adjust the number of rows as needed
+              rows={4}
               variant="outlined"
               value={newEmployeeSchema.description}
               onChange={handleDescriptionChange}

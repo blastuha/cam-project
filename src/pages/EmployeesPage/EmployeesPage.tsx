@@ -4,24 +4,22 @@ import { EmployeesTable } from '@components/tables/EmployeesTable/EmployeesTable
 import { EmployeesTableBody } from '@components/tables/EmployeesTable/EmployeesTableRow/EmployeesTableRow';
 import { EmployeesTableHeader } from '@components/tables/EmployeesTable/EmployeesTableHeader/EmployeesTableHeader';
 import { useNavigate } from 'react-router-dom';
-import { employeesTableRowData } from '@utils/api/employeesTableRowData';
 import { ContentCard } from '@components/cards/ContentCard/ContentCard';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 import { PageContainer } from '@components/containers/PageContainer/PageContainer';
 import { getAllEmployees } from '@api/getAllEmployees';
-import { VideoGetAllSchema } from 'generated/openapi/main-api';
+import { UserGetAllSchema } from 'generated/openapi/main-api';
 
 export const EmployeesPage = () => {
-  const [allEmployees, setAllEmployees] = React.useState<VideoGetAllSchema[]>(
+  const [allEmployees, setAllEmployees] = React.useState<UserGetAllSchema[]>(
     []
   );
-
-  console.log('allEmployees', allEmployees);
-
   const navigate = useNavigate();
 
-  const handleEmpoloyeeIcon = (employeeId: number) => {
-    navigate(`/employee/${employeeId}`);
+  const handleEmpoloyeeIcon = (employeeId: number | undefined) => {
+    if (employeeId) {
+      navigate(`/employee/${employeeId}`);
+    }
   };
 
   const handleAddEmployee = () => {
@@ -58,7 +56,7 @@ export const EmployeesPage = () => {
           <EmployeesTable>
             <EmployeesTableHeader />
             <EmployeesTableBody
-              employeesTableRowData={employeesTableRowData}
+              allEmployees={allEmployees}
               onEmployeeIcon={handleEmpoloyeeIcon}
             />
           </EmployeesTable>
