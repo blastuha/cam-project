@@ -9,11 +9,13 @@ import { Chip } from '@mui/material';
 type EmployeesTableBodyProps = {
   allEmployees: UserGetAllSchema[];
   onEmployeeIcon: (id: number | undefined) => void;
+  onDelete: (id: string | undefined) => void;
 };
 
 export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
   onEmployeeIcon,
   allEmployees,
+  onDelete,
 }) => {
   return (
     <tbody>
@@ -30,12 +32,10 @@ export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
               <span>{employee.last_name}</span>
             </td>
             <td className={styles.statusCell}>
-              {/* <span> */}
               <Chip
                 label={employee.is_active ? 'Активен' : 'Выключен'}
                 color={employee.is_active ? 'success' : 'error'}
               />
-              {/* </span> */}
             </td>
             <td className={styles.actionsCell}>
               <AccountBoxIcon
@@ -43,7 +43,10 @@ export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
                 onClick={() => onEmployeeIcon(Number(employee?.id))}
               />
               <EditIcon className={styles.actionIcon} />
-              <DeleteIcon className={styles.actionIcon} />
+              <DeleteIcon
+                className={styles.actionIcon}
+                onClick={() => onDelete(employee?.id)}
+              />
             </td>
           </tr>
         );

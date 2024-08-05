@@ -8,13 +8,28 @@ import { ContentCard } from '@components/cards/ContentCard/ContentCard';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 import { PageContainer } from '@components/containers/PageContainer/PageContainer';
 import { getAllEmployees } from '@api/getAllEmployees';
-import { UserGetAllSchema } from 'generated/openapi/main-api';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { deleteEmployee } from '@api/deleteEmployee';
+import { useQueryClient } from '@tanstack/react-query';
+import Spinner from '@components/Spinner';
 
 export const EmployeesPage = () => {
-  const [allEmployees, setAllEmployees] = React.useState<UserGetAllSchema[]>(
-    []
-  );
+  const { data: allEmployees = [], isFetching: isAllEmployeesFetching } =
+    useQuery({
+      queryKey: ['employees'],
+      queryFn: getAllEmployees,
+    });
+
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const allEmployeesMutation = useMutation({
+    mutationFn: (id: string | undefined) => deleteEmployee(id),
+    onSuccess: () => {
+      // Обновление списка сотрудников после удаления
+      queryClient.invalidateQueries({ queryKey: ['employees'] });
+    },
+  });
 
   const handleEmpoloyeeIcon = (employeeId: number | undefined) => {
     if (employeeId) {
@@ -26,20 +41,13 @@ export const EmployeesPage = () => {
     navigate(`/employees/add-employee`);
   };
 
-  React.useEffect(() => {
-    const fetchAllEmployees = async () => {
-      try {
-        const response = await getAllEmployees();
-        setAllEmployees(response?.data || []);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchAllEmployees();
-  }, []);
-
-  console.log('allEmployees', allEmployees);
+  if (isAllEmployeesFetching) {
+    return (
+      <PageContainer>
+        <Spinner />;
+      </PageContainer>
+    );
+  }
 
   return (
     <PageContainer>
@@ -58,6 +66,9 @@ export const EmployeesPage = () => {
             <EmployeesTableBody
               allEmployees={allEmployees}
               onEmployeeIcon={handleEmpoloyeeIcon}
+              onDelete={(id: string | undefined) =>
+                allEmployeesMutation.mutate(id)
+              }
             />
           </EmployeesTable>
         </ContentCard.Body>

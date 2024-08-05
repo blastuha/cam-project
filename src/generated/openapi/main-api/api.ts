@@ -87,10 +87,10 @@ export interface GetAllResponseSchema200 {
     'success'?: boolean;
     /**
      * 
-     * @type {Array<VideoGetAllSchema>}
+     * @type {Array<UserGetAllSchema>}
      * @memberof GetAllResponseSchema200
      */
-    'data': Array<VideoGetAllSchema>;
+    'data': Array<UserGetAllSchema>;
     /**
      * 
      * @type {string}
@@ -112,14 +112,64 @@ export interface GetOneResponseSchema200 {
     'success'?: boolean;
     /**
      * 
-     * @type {VideoGetOneDataSchema}
+     * @type {UserGetSchema}
      * @memberof GetOneResponseSchema200
+     */
+    'data': UserGetSchema;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetOneResponseSchema200
+     */
+    'error'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface GetVideoAllResponseSchema200
+ */
+export interface GetVideoAllResponseSchema200 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetVideoAllResponseSchema200
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {Array<VideoGetAllSchema>}
+     * @memberof GetVideoAllResponseSchema200
+     */
+    'data': Array<VideoGetAllSchema>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetVideoAllResponseSchema200
+     */
+    'error'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface GetVideoOneResponseSchema200
+ */
+export interface GetVideoOneResponseSchema200 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetVideoOneResponseSchema200
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {VideoGetOneDataSchema}
+     * @memberof GetVideoOneResponseSchema200
      */
     'data': VideoGetOneDataSchema;
     /**
      * 
      * @type {string}
-     * @memberof GetOneResponseSchema200
+     * @memberof GetVideoOneResponseSchema200
      */
     'error'?: string | null;
 }
@@ -195,31 +245,6 @@ export interface LoginSchema {
 /**
  * 
  * @export
- * @interface ManageResponseSchema200
- */
-export interface ManageResponseSchema200 {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ManageResponseSchema200
-     */
-    'success'?: boolean;
-    /**
-     * 
-     * @type {object}
-     * @memberof ManageResponseSchema200
-     */
-    'data'?: object | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ManageResponseSchema200
-     */
-    'error'?: string | null;
-}
-/**
- * 
- * @export
  * @interface ManageUserInVideoUserRequestData
  */
 export interface ManageUserInVideoUserRequestData {
@@ -235,6 +260,31 @@ export interface ManageUserInVideoUserRequestData {
      * @memberof ManageUserInVideoUserRequestData
      */
     'user_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface ManageVideoResponseSchema200
+ */
+export interface ManageVideoResponseSchema200 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ManageVideoResponseSchema200
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof ManageVideoResponseSchema200
+     */
+    'data'?: object | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ManageVideoResponseSchema200
+     */
+    'error'?: string | null;
 }
 /**
  * 
@@ -283,6 +333,31 @@ export interface ResponseSchema401 {
      * 
      * @type {string}
      * @memberof ResponseSchema401
+     */
+    'error'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ResponseSchemaVideo401
+ */
+export interface ResponseSchemaVideo401 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ResponseSchemaVideo401
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof ResponseSchemaVideo401
+     */
+    'data'?: object | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResponseSchemaVideo401
      */
     'error'?: string;
 }
@@ -365,12 +440,6 @@ export interface UserGetSchema {
      * @memberof UserGetSchema
      */
     'image'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserGetSchema
-     */
-    'embedding_model'?: string | null;
 }
 /**
  * 
@@ -1019,7 +1088,7 @@ export const AnalyzerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async analyzerGetAll(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAllResponseSchema200>> {
+        async analyzerGetAll(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetVideoAllResponseSchema200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.analyzerGetAll(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyzerApi.analyzerGetAll']?.[localVarOperationServerIndex]?.url;
@@ -1032,7 +1101,7 @@ export const AnalyzerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async analyzerGetOne(videoId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOneResponseSchema200>> {
+        async analyzerGetOne(videoId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetVideoOneResponseSchema200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.analyzerGetOne(videoId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyzerApi.analyzerGetOne']?.[localVarOperationServerIndex]?.url;
@@ -1058,7 +1127,7 @@ export const AnalyzerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async analyzerManageUserInVideoData(manageUserInVideoUserRequestData: ManageUserInVideoUserRequestData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManageResponseSchema200>> {
+        async analyzerManageUserInVideoData(manageUserInVideoUserRequestData: ManageUserInVideoUserRequestData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManageVideoResponseSchema200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.analyzerManageUserInVideoData(manageUserInVideoUserRequestData, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyzerApi.analyzerManageUserInVideoData']?.[localVarOperationServerIndex]?.url;
@@ -1118,7 +1187,7 @@ export const AnalyzerApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        analyzerGetAll(options?: any): AxiosPromise<GetAllResponseSchema200> {
+        analyzerGetAll(options?: any): AxiosPromise<GetVideoAllResponseSchema200> {
             return localVarFp.analyzerGetAll(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1128,7 +1197,7 @@ export const AnalyzerApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        analyzerGetOne(videoId: string, options?: any): AxiosPromise<GetOneResponseSchema200> {
+        analyzerGetOne(videoId: string, options?: any): AxiosPromise<GetVideoOneResponseSchema200> {
             return localVarFp.analyzerGetOne(videoId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1148,7 +1217,7 @@ export const AnalyzerApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        analyzerManageUserInVideoData(manageUserInVideoUserRequestData: ManageUserInVideoUserRequestData, options?: any): AxiosPromise<ManageResponseSchema200> {
+        analyzerManageUserInVideoData(manageUserInVideoUserRequestData: ManageUserInVideoUserRequestData, options?: any): AxiosPromise<ManageVideoResponseSchema200> {
             return localVarFp.analyzerManageUserInVideoData(manageUserInVideoUserRequestData, options).then((request) => request(axios, basePath));
         },
         /**
