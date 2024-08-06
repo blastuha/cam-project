@@ -30,12 +30,12 @@ td {
   cursor: pointer;
 }
 
-// .photoCell {
-//   width: 40px;
-//   height: 40px;
+.noEmployeeRow {
+  text-align: center;
+  font-size: 18px;
+  color: var(--text-dark-2);
 
-//   img {
-//     width: 40px;
-//     height: 40px;
-//   }
-// }
+  td {
+    padding: 20px 14px;
+  }
+}

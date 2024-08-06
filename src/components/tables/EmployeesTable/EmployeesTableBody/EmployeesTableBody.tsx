@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './EmployeesTableRow.module.scss';
+import styles from './EmployeesTableBody.module.scss';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import EditIcon from '@mui/icons-material/Edit';
@@ -17,14 +17,20 @@ export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
   allEmployees,
   onDelete,
 }) => {
+  if (allEmployees.length === 0)
+    return (
+      <tbody>
+        <tr className={styles.noEmployeeRow}>
+          <td colSpan={4}>В списке нет сотрудников</td>
+        </tr>
+      </tbody>
+    );
+
   return (
     <tbody>
       {allEmployees.map((employee) => {
         return (
           <tr className={styles.employeesTableRow} key={employee.id}>
-            {/* <td className={styles.photoCell}>
-              <img src={employee.} alt="photo" />
-            </td> */}
             <td className={styles.firstNameCell}>
               <span>{employee.first_name}</span>
             </td>
