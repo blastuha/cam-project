@@ -8,7 +8,7 @@ import { Chip } from '@mui/material';
 
 type EmployeesTableBodyProps = {
   allEmployees: UserGetAllSchema[];
-  onEmployeeIcon: (id: number | undefined) => void;
+  onEmployeeIcon: (id: string | undefined) => void;
   onDelete: (id: string | undefined) => void;
 };
 
@@ -46,7 +46,7 @@ export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
             <td className={styles.actionsCell}>
               <AccountBoxIcon
                 className={styles.actionIcon}
-                onClick={() => onEmployeeIcon(Number(employee?.id))}
+                onClick={() => onEmployeeIcon(employee?.id)}
               />
               <EditIcon className={styles.actionIcon} />
               <DeleteIcon

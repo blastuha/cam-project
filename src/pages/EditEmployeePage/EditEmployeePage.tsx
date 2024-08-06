@@ -1,31 +1,45 @@
+import React from 'react';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 import { ContentCard } from '@components/cards/ContentCard/ContentCard';
 import { PageContainer } from '@components/containers/PageContainer/PageContainer';
 import { FormGroup } from '@components/inputs/FormGroup/FormGroup';
 import loadPhotoEmployee from '@assets/noPhotoEmployee.webp';
-import React from 'react';
-import styles from './AddEmployeePage.module.scss';
 import { ImageContainer } from '@components/containers/ImageContainer/ImageContainer';
 import { PhotoUploadInput } from '@components/inputs/PhotoUploadInput/PhotoUploadInput';
 import { UserGetSchema } from 'generated/openapi/main-api';
 import { MuiSelect } from '@components/selects/MuiSelect';
 import { SelectChangeEvent, TextField } from '@mui/material';
 import { createEmployee } from '@api/createEmployee';
+import styles from './EditEmployeePage.module.scss';
+import { getOneEmployee } from '@api/getOneEmployee';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 const selectItems = [
   { text: 'Активный', value: 'true' },
   { text: 'Неактивный', value: 'false' },
 ];
 
-export const AddEmployeePage = () => {
+export const EditEmployeePage = () => {
+  const { id } = useParams<{ id: string }>();
+
+  const { data: employeeData, isFetching: isEmployeeFetching } = useQuery({
+    queryKey: ['employees'],
+    queryFn: () => getOneEmployee(id),
+  });
+
+  console.log('employeeData', employeeData);
+
   const [newEmployeeSchema, setNewEmployeeSchema] =
     React.useState<UserGetSchema>({
-      first_name: '',
-      last_name: '',
-      is_active: true,
-      description: '',
-      image: '',
+      first_name: employeeData?.first_name,
+      last_name: employeeData?.last_name,
+      is_active: employeeData?.is_active,
+      description: employeeData?.description,
+      image: employeeData?.image,
     });
+
+  console.log('newEmployeeSchema', newEmployeeSchema);
 
   const handlePhotoUpload = (photo: string) => {
     setNewEmployeeSchema((prevState) => ({
@@ -88,12 +102,22 @@ export const AddEmployeePage = () => {
     }
   };
 
+  React.useEffect(() => {
+    setNewEmployeeSchema({
+      first_name: employeeData?.first_name,
+      last_name: employeeData?.last_name,
+      is_active: employeeData?.is_active,
+      description: employeeData?.description,
+      image: employeeData?.image,
+    });
+  }, [employeeData]);
+
   return (
     <PageContainer className="addEmployeePage">
       <ContentCard className="addEmployeeCard">
         <ContentCard.Header>
           <ContentCard.HeaderTitle>
-            Добавление сотрудника
+            {`Редактирование сотрудника "${employeeData?.first_name} ${employeeData?.last_name}"`}
           </ContentCard.HeaderTitle>
         </ContentCard.Header>
         <ContentCard.Body className="addEmployeeBody">
@@ -113,12 +137,14 @@ export const AddEmployeePage = () => {
               inputType="text"
               label="Имя"
               onChange={handleFirstNameChange}
+              value={newEmployeeSchema?.first_name}
             />
             <FormGroup
               htmlFor="employeeName"
               inputType="text"
               label="Фамилия"
               onChange={handleLastNameChange}
+              value={newEmployeeSchema?.last_name}
             />
             <MuiSelect
               selectItems={selectItems}

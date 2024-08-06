@@ -7,12 +7,14 @@ export const FormGroup = ({
   label,
   inputType,
   onChange,
+  value,
 }: {
   htmlFor: string;
   placeholder?: string;
   label: string;
   inputType: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }) => {
   return (
     <div className={styles.formGroup}>
@@ -22,6 +24,7 @@ export const FormGroup = ({
         type={inputType}
         placeholder={placeholder}
         onChange={onChange}
+        value={value}
       />
     </div>
   );

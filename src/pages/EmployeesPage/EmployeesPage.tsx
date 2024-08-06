@@ -18,8 +18,8 @@ export const EmployeesPage = () => {
   const [selectedEmployeeId, setSelectedEmployeeId] = React.useState<
     string | undefined
   >(undefined);
-
   const [isDialogOpen, setDialogOpen] = React.useState(false);
+
   const { data: allEmployees = [], isFetching: isAllEmployeesFetching } =
     useQuery({
       queryKey: ['employees'],
@@ -29,7 +29,8 @@ export const EmployeesPage = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const handleEmpoloyeeIcon = (employeeId: number | undefined) => {
+  const handleEmpoloyeeIcon = (employeeId: string | undefined) => {
+    console.log('employeeId', employeeId);
     if (employeeId) {
       navigate(`/employee/${employeeId}`);
     }

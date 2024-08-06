@@ -4,4 +4,5 @@ export const ROUTES = {
   EMPLOYEES: '/employees',
   EMPLOYEE_WITH_ID: '/employee/:id',
   ADD_EMPLOYEE: 'employees/add-employee',
+  EDIT_EMPLOYEE: 'employees/edit-employee/:id',
 };

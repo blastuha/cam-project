@@ -14,6 +14,7 @@ import { theme } from './theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './context/AuthContext';
 import { PrivateRoute } from '@components/PrivateRoute';
+import { EditEmployeePage } from '@pages/EditEmployeePage/EditEmployeePage';
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,11 @@ function App() {
                 <Route
                   path={ROUTES.EMPLOYEE_WITH_ID}
                   element={<EmployeePage />}
+                />
+
+                <Route
+                  path={ROUTES.EDIT_EMPLOYEE}
+                  element={<EditEmployeePage />}
                 />
 
                 {/* <Route path="*" element={<Navigate to={ROUTES.ERROR} />} /> */}
