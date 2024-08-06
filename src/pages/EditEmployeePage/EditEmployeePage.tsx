@@ -14,6 +14,7 @@ import styles from './EditEmployeePage.module.scss';
 import { getOneEmployee } from '@api/getOneEmployee';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { editEmployee } from '@api/editEmployee';
 
 const selectItems = [
   { text: 'Активный', value: 'true' },
@@ -82,12 +83,18 @@ export const EditEmployeePage = () => {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
+    if (!employeeData?.id) {
+      console.error('Не удалось получить ID сотрудника');
+      return;
+    }
+
     event.preventDefault();
     try {
-      const response = await createEmployee({
-        firstName: newEmployeeSchema.first_name || null,
-        lastName: newEmployeeSchema.last_name || null,
-        isActive: newEmployeeSchema.is_active || false,
+      const response = await editEmployee({
+        userId: employeeData?.id,
+        first_name: newEmployeeSchema.first_name || null,
+        last_name: newEmployeeSchema.last_name || null,
+        is_active: newEmployeeSchema.is_active || false,
         description: newEmployeeSchema.description || null,
         image: newEmployeeSchema.image || null,
       });
@@ -137,14 +144,14 @@ export const EditEmployeePage = () => {
               inputType="text"
               label="Имя"
               onChange={handleFirstNameChange}
-              value={newEmployeeSchema?.first_name}
+              value={newEmployeeSchema?.first_name || ''}
             />
             <FormGroup
               htmlFor="employeeName"
               inputType="text"
               label="Фамилия"
               onChange={handleLastNameChange}
-              value={newEmployeeSchema?.last_name}
+              value={newEmployeeSchema?.last_name || ''}
             />
             <MuiSelect
               selectItems={selectItems}
@@ -166,9 +173,12 @@ export const EditEmployeePage = () => {
               value={newEmployeeSchema.description}
               onChange={handleDescriptionChange}
               fullWidth
+              InputLabelProps={{
+                shrink: true,
+              }}
             />
 
-            <BlueButton type="submit">Добавить</BlueButton>
+            <BlueButton type="submit">Сохранить</BlueButton>
           </form>
         </ContentCard.Body>
       </ContentCard>

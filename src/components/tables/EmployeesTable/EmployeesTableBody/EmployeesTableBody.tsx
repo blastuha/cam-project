@@ -9,13 +9,15 @@ import { Chip } from '@mui/material';
 type EmployeesTableBodyProps = {
   allEmployees: UserGetAllSchema[];
   onEmployeeIcon: (id: string | undefined) => void;
-  onDelete: (id: string | undefined) => void;
+  onDeleteIcon: (id: string | undefined) => void;
+  onEditIcon: (id: string | undefined) => void;
 };
 
 export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
   onEmployeeIcon,
   allEmployees,
-  onDelete,
+  onDeleteIcon,
+  onEditIcon,
 }) => {
   if (allEmployees.length === 0)
     return (
@@ -48,10 +50,13 @@ export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
                 className={styles.actionIcon}
                 onClick={() => onEmployeeIcon(employee?.id)}
               />
-              <EditIcon className={styles.actionIcon} />
+              <EditIcon
+                className={styles.actionIcon}
+                onClick={() => onEditIcon(employee?.id)}
+              />
               <DeleteIcon
                 className={styles.actionIcon}
-                onClick={() => onDelete(employee?.id)}
+                onClick={() => onDeleteIcon(employee?.id)}
               />
             </td>
           </tr>

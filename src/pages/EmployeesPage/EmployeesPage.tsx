@@ -30,9 +30,14 @@ export const EmployeesPage = () => {
   const navigate = useNavigate();
 
   const handleEmpoloyeeIcon = (employeeId: string | undefined) => {
-    console.log('employeeId', employeeId);
     if (employeeId) {
       navigate(`/employee/${employeeId}`);
+    }
+  };
+
+  const handleEditIcon = (employeeId: string | undefined) => {
+    if (employeeId) {
+      navigate(`/employees/edit-employee/${employeeId}`);
     }
   };
 
@@ -92,7 +97,8 @@ export const EmployeesPage = () => {
             <EmployeesTableBody
               allEmployees={allEmployees}
               onEmployeeIcon={handleEmpoloyeeIcon}
-              onDelete={handleDialogOpen}
+              onDeleteIcon={handleDialogOpen}
+              onEditIcon={handleEditIcon}
             />
           </EmployeesTable>
         </ContentCard.Body>
