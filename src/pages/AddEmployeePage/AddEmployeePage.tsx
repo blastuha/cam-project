@@ -11,11 +11,8 @@ import { UserGetSchema } from 'generated/openapi/main-api';
 import { MuiSelect } from '@components/selects/MuiSelect';
 import { SelectChangeEvent, TextField } from '@mui/material';
 import { createEmployee } from '@api/createEmployee';
-
-const selectItems = [
-  { text: 'Активный', value: 'true' },
-  { text: 'Неактивный', value: 'false' },
-];
+import { employeeStatusSelect } from '@utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 export const AddEmployeePage = () => {
   const [newEmployeeSchema, setNewEmployeeSchema] =
@@ -26,6 +23,8 @@ export const AddEmployeePage = () => {
       description: '',
       image: '',
     });
+
+  const navigate = useNavigate();
 
   const handlePhotoUpload = (photo: string) => {
     setNewEmployeeSchema((prevState) => ({
@@ -78,10 +77,10 @@ export const AddEmployeePage = () => {
       });
 
       if (response?.success) {
-        console.log('Пользователь успешно создан:', response.data);
-      } else {
-        console.error('Ошибка при создании пользователя:', response?.error);
+        navigate(`/employee/${response?.data.id}`);
       }
+
+      return response;
     } catch (error) {
       console.error('Ошибка при создании пользователя:', error);
     }
@@ -120,7 +119,7 @@ export const AddEmployeePage = () => {
               onChange={handleLastNameChange}
             />
             <MuiSelect
-              selectItems={selectItems}
+              selectItems={employeeStatusSelect}
               onChange={handleSelectChange}
               value={
                 newEmployeeSchema?.is_active?.toString()

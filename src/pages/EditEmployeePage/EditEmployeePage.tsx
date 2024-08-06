@@ -12,13 +12,9 @@ import { SelectChangeEvent, TextField } from '@mui/material';
 import styles from './EditEmployeePage.module.scss';
 import { getOneEmployee } from '@api/getOneEmployee';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { editEmployee } from '@api/editEmployee';
-
-const selectItems = [
-  { text: 'Активный', value: 'true' },
-  { text: 'Неактивный', value: 'false' },
-];
+import { employeeStatusSelect } from '@utils/constants';
 
 export const EditEmployeePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,6 +23,8 @@ export const EditEmployeePage = () => {
     queryKey: ['employees'],
     queryFn: () => getOneEmployee(id),
   });
+
+  const navigate = useNavigate();
 
   const [newEmployeeSchema, setNewEmployeeSchema] =
     React.useState<UserGetSchema>({
@@ -81,8 +79,8 @@ export const EditEmployeePage = () => {
       console.error('Не удалось получить ID сотрудника');
       return;
     }
-
     event.preventDefault();
+
     try {
       const response = await editEmployee({
         userId: employeeData?.id,
@@ -92,6 +90,10 @@ export const EditEmployeePage = () => {
         description: newEmployeeSchema.description || null,
         image: newEmployeeSchema.image || null,
       });
+
+      if (response?.success) {
+        navigate(`/employee/${employeeData?.id}`);
+      }
 
       return response;
     } catch (error) {
@@ -146,7 +148,7 @@ export const EditEmployeePage = () => {
               value={newEmployeeSchema?.last_name || ''}
             />
             <MuiSelect
-              selectItems={selectItems}
+              selectItems={employeeStatusSelect}
               onChange={handleSelectChange}
               value={
                 newEmployeeSchema?.is_active?.toString()
