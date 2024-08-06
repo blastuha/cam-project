@@ -9,7 +9,6 @@ import { PhotoUploadInput } from '@components/inputs/PhotoUploadInput/PhotoUploa
 import { UserGetSchema } from 'generated/openapi/main-api';
 import { MuiSelect } from '@components/selects/MuiSelect';
 import { SelectChangeEvent, TextField } from '@mui/material';
-import { createEmployee } from '@api/createEmployee';
 import styles from './EditEmployeePage.module.scss';
 import { getOneEmployee } from '@api/getOneEmployee';
 import { useQuery } from '@tanstack/react-query';
@@ -29,8 +28,6 @@ export const EditEmployeePage = () => {
     queryFn: () => getOneEmployee(id),
   });
 
-  console.log('employeeData', employeeData);
-
   const [newEmployeeSchema, setNewEmployeeSchema] =
     React.useState<UserGetSchema>({
       first_name: employeeData?.first_name,
@@ -39,8 +36,6 @@ export const EditEmployeePage = () => {
       description: employeeData?.description,
       image: employeeData?.image,
     });
-
-  console.log('newEmployeeSchema', newEmployeeSchema);
 
   const handlePhotoUpload = (photo: string) => {
     setNewEmployeeSchema((prevState) => ({
@@ -66,7 +61,6 @@ export const EditEmployeePage = () => {
   };
 
   const handleSelectChange = (event: SelectChangeEvent) => {
-    console.log('event.target.value', event.target.value);
     setNewEmployeeSchema((prevState) => ({
       ...prevState,
       is_active: event.target.value === 'true' ? true : false,
@@ -99,11 +93,7 @@ export const EditEmployeePage = () => {
         image: newEmployeeSchema.image || null,
       });
 
-      if (response?.success) {
-        console.log('Пользователь успешно создан:', response.data);
-      } else {
-        console.error('Ошибка при создании пользователя:', response?.error);
-      }
+      return response;
     } catch (error) {
       console.error('Ошибка при создании пользователя:', error);
     }
@@ -124,7 +114,9 @@ export const EditEmployeePage = () => {
       <ContentCard className="addEmployeeCard">
         <ContentCard.Header>
           <ContentCard.HeaderTitle>
-            {`Редактирование сотрудника "${employeeData?.first_name} ${employeeData?.last_name}"`}
+            {`Редактирование сотрудника ${
+              employeeData?.first_name ? employeeData?.first_name : ''
+            } ${employeeData?.last_name ? employeeData?.last_name : ''}`}
           </ContentCard.HeaderTitle>
         </ContentCard.Header>
         <ContentCard.Body className="addEmployeeBody">
@@ -157,7 +149,7 @@ export const EditEmployeePage = () => {
               selectItems={selectItems}
               onChange={handleSelectChange}
               value={
-                newEmployeeSchema?.is_active
+                newEmployeeSchema?.is_active?.toString()
                   ? newEmployeeSchema?.is_active?.toString()
                   : ''
               }

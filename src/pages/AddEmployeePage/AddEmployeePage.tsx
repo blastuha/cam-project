@@ -51,7 +51,6 @@ export const AddEmployeePage = () => {
   };
 
   const handleSelectChange = (event: SelectChangeEvent) => {
-    console.log('event.target.value', event.target.value);
     setNewEmployeeSchema((prevState) => ({
       ...prevState,
       is_active: event.target.value === 'true' ? true : false,
@@ -124,7 +123,7 @@ export const AddEmployeePage = () => {
               selectItems={selectItems}
               onChange={handleSelectChange}
               value={
-                newEmployeeSchema?.is_active
+                newEmployeeSchema?.is_active?.toString()
                   ? newEmployeeSchema?.is_active?.toString()
                   : ''
               }
