@@ -126,56 +126,6 @@ export interface GetOneResponseSchema200 {
 /**
  * 
  * @export
- * @interface GetVideoAllResponseSchema200
- */
-export interface GetVideoAllResponseSchema200 {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetVideoAllResponseSchema200
-     */
-    'success'?: boolean;
-    /**
-     * 
-     * @type {Array<VideoGetAllSchema>}
-     * @memberof GetVideoAllResponseSchema200
-     */
-    'data': Array<VideoGetAllSchema>;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetVideoAllResponseSchema200
-     */
-    'error'?: string | null;
-}
-/**
- * 
- * @export
- * @interface GetVideoOneResponseSchema200
- */
-export interface GetVideoOneResponseSchema200 {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetVideoOneResponseSchema200
-     */
-    'success'?: boolean;
-    /**
-     * 
-     * @type {VideoGetOneDataSchema}
-     * @memberof GetVideoOneResponseSchema200
-     */
-    'data': VideoGetOneDataSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetVideoOneResponseSchema200
-     */
-    'error'?: string | null;
-}
-/**
- * 
- * @export
  * @interface LoginResponseSchema200
  */
 export interface LoginResponseSchema200 {
@@ -264,31 +214,6 @@ export interface ManageUserInVideoUserRequestData {
 /**
  * 
  * @export
- * @interface ManageVideoResponseSchema200
- */
-export interface ManageVideoResponseSchema200 {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ManageVideoResponseSchema200
-     */
-    'success'?: boolean;
-    /**
-     * 
-     * @type {object}
-     * @memberof ManageVideoResponseSchema200
-     */
-    'data'?: object | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ManageVideoResponseSchema200
-     */
-    'error'?: string | null;
-}
-/**
- * 
- * @export
  * @interface ResponseSchema200
  */
 export interface ResponseSchema200 {
@@ -333,31 +258,6 @@ export interface ResponseSchema401 {
      * 
      * @type {string}
      * @memberof ResponseSchema401
-     */
-    'error'?: string;
-}
-/**
- * 
- * @export
- * @interface ResponseSchemaVideo401
- */
-export interface ResponseSchemaVideo401 {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ResponseSchemaVideo401
-     */
-    'success'?: boolean;
-    /**
-     * 
-     * @type {object}
-     * @memberof ResponseSchemaVideo401
-     */
-    'data'?: object | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof ResponseSchemaVideo401
      */
     'error'?: string;
 }
@@ -477,6 +377,80 @@ export interface UserInVideoDataGroupData {
      * @memberof UserInVideoDataGroupData
      */
     'timings': Array<UserInVideoOneSchema>;
+}
+/**
+ * 
+ * @export
+ * @interface UserInVideoDataPlotData
+ */
+export interface UserInVideoDataPlotData {
+    /**
+     * 
+     * @type {number}
+     * @memberof UserInVideoDataPlotData
+     */
+    'y_min': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserInVideoDataPlotData
+     */
+    'y_max': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserInVideoDataPlotData
+     */
+    'x_min': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserInVideoDataPlotData
+     */
+    'x_max': string;
+    /**
+     * 
+     * @type {{ [key: string]: Array<any>; }}
+     * @memberof UserInVideoDataPlotData
+     */
+    'plot_data': { [key: string]: Array<any>; };
+    /**
+     * 
+     * @type {number}
+     * @memberof UserInVideoDataPlotData
+     */
+    'total': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserInVideoDataPlotData
+     */
+    'percent': number;
+}
+/**
+ * 
+ * @export
+ * @interface UserInVideoDataRequestData
+ */
+export interface UserInVideoDataRequestData {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserInVideoDataRequestData
+     */
+    'date_from': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserInVideoDataRequestData
+     */
+    'date_to': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserInVideoDataRequestData
+     */
+    'working_hours'?: number;
 }
 /**
  * 
@@ -660,6 +634,31 @@ export interface VideoAnalyzeRequestData {
 /**
  * 
  * @export
+ * @interface VideoGetAllResponseSchema200
+ */
+export interface VideoGetAllResponseSchema200 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoGetAllResponseSchema200
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {Array<VideoGetAllSchema>}
+     * @memberof VideoGetAllResponseSchema200
+     */
+    'data': Array<VideoGetAllSchema>;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoGetAllResponseSchema200
+     */
+    'error'?: string | null;
+}
+/**
+ * 
+ * @export
  * @interface VideoGetAllSchema
  */
 export interface VideoGetAllSchema {
@@ -730,6 +729,31 @@ export interface VideoGetOneDataSchema {
      * @memberof VideoGetOneDataSchema
      */
     'fragments': Array<UserInVideoDataGroupData> | null;
+}
+/**
+ * 
+ * @export
+ * @interface VideoGetOneResponseSchema200
+ */
+export interface VideoGetOneResponseSchema200 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoGetOneResponseSchema200
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {VideoGetOneDataSchema}
+     * @memberof VideoGetOneResponseSchema200
+     */
+    'data': VideoGetOneDataSchema;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoGetOneResponseSchema200
+     */
+    'error'?: string | null;
 }
 /**
  * 
@@ -809,6 +833,131 @@ export interface VideoGetOneSchema {
      * @memberof VideoGetOneSchema
      */
     'result_video_filepath'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface VideoGetUserinVideoDataPlotData200
+ */
+export interface VideoGetUserinVideoDataPlotData200 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoGetUserinVideoDataPlotData200
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {UserInVideoDataPlotData}
+     * @memberof VideoGetUserinVideoDataPlotData200
+     */
+    'data': UserInVideoDataPlotData | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoGetUserinVideoDataPlotData200
+     */
+    'error'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface VideoGetUserinVideoDataVideosData200
+ */
+export interface VideoGetUserinVideoDataVideosData200 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoGetUserinVideoDataVideosData200
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof VideoGetUserinVideoDataVideosData200
+     */
+    'data': Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoGetUserinVideoDataVideosData200
+     */
+    'error'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface VideoManageResponseSchema200
+ */
+export interface VideoManageResponseSchema200 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoManageResponseSchema200
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof VideoManageResponseSchema200
+     */
+    'data'?: object | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoManageResponseSchema200
+     */
+    'error'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface VideoResponseSchema401
+ */
+export interface VideoResponseSchema401 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoResponseSchema401
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof VideoResponseSchema401
+     */
+    'data'?: object | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoResponseSchema401
+     */
+    'error'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface VideoResponseSchema404
+ */
+export interface VideoResponseSchema404 {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoResponseSchema404
+     */
+    'success'?: boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof VideoResponseSchema404
+     */
+    'data'?: object | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof VideoResponseSchema404
+     */
+    'error'?: string;
 }
 
 /**
@@ -911,6 +1060,108 @@ export const AnalyzerApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Получение графика пользователя по заданному интервалу
+         * @summary Get User Plot Data
+         * @param {string} userId 
+         * @param {string} dateFrom 
+         * @param {string} dateTo 
+         * @param {number} [workingHours] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyzerGetUserPlotData: async (userId: string, dateFrom: string, dateTo: string, workingHours?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('analyzerGetUserPlotData', 'userId', userId)
+            // verify required parameter 'dateFrom' is not null or undefined
+            assertParamExists('analyzerGetUserPlotData', 'dateFrom', dateFrom)
+            // verify required parameter 'dateTo' is not null or undefined
+            assertParamExists('analyzerGetUserPlotData', 'dateTo', dateTo)
+            const localVarPath = `/api/v1/analyzer/user/{user_id}/plot/`
+                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication AppJwtAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (dateFrom !== undefined) {
+                localVarQueryParameter['date_from'] = dateFrom;
+            }
+
+            if (dateTo !== undefined) {
+                localVarQueryParameter['date_to'] = dateTo;
+            }
+
+            if (workingHours !== undefined) {
+                localVarQueryParameter['working_hours'] = workingHours;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Получение видео пользователя за указанную дату
+         * @summary Get User Videos Data
+         * @param {string} userId 
+         * @param {string} date 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyzerGetUserVideosUrls: async (userId: string, date: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'userId' is not null or undefined
+            assertParamExists('analyzerGetUserVideosUrls', 'userId', userId)
+            // verify required parameter 'date' is not null or undefined
+            assertParamExists('analyzerGetUserVideosUrls', 'date', date)
+            const localVarPath = `/api/v1/analyzer/user/{user_id}/videos/`
+                .replace(`{${"user_id"}}`, encodeURIComponent(String(userId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication AppJwtAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (date !== undefined) {
+                localVarQueryParameter['date'] = date;
+            }
 
 
     
@@ -1088,7 +1339,7 @@ export const AnalyzerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async analyzerGetAll(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetVideoAllResponseSchema200>> {
+        async analyzerGetAll(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoGetAllResponseSchema200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.analyzerGetAll(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyzerApi.analyzerGetAll']?.[localVarOperationServerIndex]?.url;
@@ -1101,7 +1352,7 @@ export const AnalyzerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async analyzerGetOne(videoId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetVideoOneResponseSchema200>> {
+        async analyzerGetOne(videoId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoGetOneResponseSchema200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.analyzerGetOne(videoId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyzerApi.analyzerGetOne']?.[localVarOperationServerIndex]?.url;
@@ -1121,13 +1372,43 @@ export const AnalyzerApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Получение графика пользователя по заданному интервалу
+         * @summary Get User Plot Data
+         * @param {string} userId 
+         * @param {string} dateFrom 
+         * @param {string} dateTo 
+         * @param {number} [workingHours] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async analyzerGetUserPlotData(userId: string, dateFrom: string, dateTo: string, workingHours?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoGetUserinVideoDataPlotData200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.analyzerGetUserPlotData(userId, dateFrom, dateTo, workingHours, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AnalyzerApi.analyzerGetUserPlotData']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Получение видео пользователя за указанную дату
+         * @summary Get User Videos Data
+         * @param {string} userId 
+         * @param {string} date 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async analyzerGetUserVideosUrls(userId: string, date: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoGetUserinVideoDataVideosData200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.analyzerGetUserVideosUrls(userId, date, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AnalyzerApi.analyzerGetUserVideosUrls']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Изменить юзера у фрагмента анализа данных
          * @summary Manage User In Video Data User
          * @param {ManageUserInVideoUserRequestData} manageUserInVideoUserRequestData 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async analyzerManageUserInVideoData(manageUserInVideoUserRequestData: ManageUserInVideoUserRequestData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManageVideoResponseSchema200>> {
+        async analyzerManageUserInVideoData(manageUserInVideoUserRequestData: ManageUserInVideoUserRequestData, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VideoManageResponseSchema200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.analyzerManageUserInVideoData(manageUserInVideoUserRequestData, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AnalyzerApi.analyzerManageUserInVideoData']?.[localVarOperationServerIndex]?.url;
@@ -1187,7 +1468,7 @@ export const AnalyzerApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        analyzerGetAll(options?: any): AxiosPromise<GetVideoAllResponseSchema200> {
+        analyzerGetAll(options?: any): AxiosPromise<VideoGetAllResponseSchema200> {
             return localVarFp.analyzerGetAll(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1197,7 +1478,7 @@ export const AnalyzerApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        analyzerGetOne(videoId: string, options?: any): AxiosPromise<GetVideoOneResponseSchema200> {
+        analyzerGetOne(videoId: string, options?: any): AxiosPromise<VideoGetOneResponseSchema200> {
             return localVarFp.analyzerGetOne(videoId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1211,13 +1492,37 @@ export const AnalyzerApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.analyzerGetProcessStream(videoId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Получение графика пользователя по заданному интервалу
+         * @summary Get User Plot Data
+         * @param {string} userId 
+         * @param {string} dateFrom 
+         * @param {string} dateTo 
+         * @param {number} [workingHours] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyzerGetUserPlotData(userId: string, dateFrom: string, dateTo: string, workingHours?: number, options?: any): AxiosPromise<VideoGetUserinVideoDataPlotData200> {
+            return localVarFp.analyzerGetUserPlotData(userId, dateFrom, dateTo, workingHours, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Получение видео пользователя за указанную дату
+         * @summary Get User Videos Data
+         * @param {string} userId 
+         * @param {string} date 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyzerGetUserVideosUrls(userId: string, date: string, options?: any): AxiosPromise<VideoGetUserinVideoDataVideosData200> {
+            return localVarFp.analyzerGetUserVideosUrls(userId, date, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Изменить юзера у фрагмента анализа данных
          * @summary Manage User In Video Data User
          * @param {ManageUserInVideoUserRequestData} manageUserInVideoUserRequestData 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        analyzerManageUserInVideoData(manageUserInVideoUserRequestData: ManageUserInVideoUserRequestData, options?: any): AxiosPromise<ManageVideoResponseSchema200> {
+        analyzerManageUserInVideoData(manageUserInVideoUserRequestData: ManageUserInVideoUserRequestData, options?: any): AxiosPromise<VideoManageResponseSchema200> {
             return localVarFp.analyzerManageUserInVideoData(manageUserInVideoUserRequestData, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1292,6 +1597,34 @@ export class AnalyzerApi extends BaseAPI {
      */
     public analyzerGetProcessStream(videoId: string, options?: RawAxiosRequestConfig) {
         return AnalyzerApiFp(this.configuration).analyzerGetProcessStream(videoId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Получение графика пользователя по заданному интервалу
+     * @summary Get User Plot Data
+     * @param {string} userId 
+     * @param {string} dateFrom 
+     * @param {string} dateTo 
+     * @param {number} [workingHours] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AnalyzerApi
+     */
+    public analyzerGetUserPlotData(userId: string, dateFrom: string, dateTo: string, workingHours?: number, options?: RawAxiosRequestConfig) {
+        return AnalyzerApiFp(this.configuration).analyzerGetUserPlotData(userId, dateFrom, dateTo, workingHours, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Получение видео пользователя за указанную дату
+     * @summary Get User Videos Data
+     * @param {string} userId 
+     * @param {string} date 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AnalyzerApi
+     */
+    public analyzerGetUserVideosUrls(userId: string, date: string, options?: RawAxiosRequestConfig) {
+        return AnalyzerApiFp(this.configuration).analyzerGetUserVideosUrls(userId, date, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1740,6 +2073,40 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Логаут из системы
+         * @summary Logout
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logout: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/user/logout`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication AppJwtAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Обновление пользователя в системе
          * @summary Update
          * @param {string} userId 
@@ -1870,6 +2237,18 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Логаут из системы
+         * @summary Logout
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async logout(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteResponseSchema200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.logout(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.logout']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Обновление пользователя в системе
          * @summary Update
          * @param {string} userId 
@@ -1950,6 +2329,15 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          */
         login(loginSchema: LoginSchema, options?: any): AxiosPromise<LoginResponseSchema200> {
             return localVarFp.login(loginSchema, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Логаут из системы
+         * @summary Logout
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logout(options?: any): AxiosPromise<DeleteResponseSchema200> {
+            return localVarFp.logout(options).then((request) => request(axios, basePath));
         },
         /**
          * Обновление пользователя в системе
@@ -2040,6 +2428,17 @@ export class UserApi extends BaseAPI {
      */
     public login(loginSchema: LoginSchema, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).login(loginSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Логаут из системы
+     * @summary Logout
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public logout(options?: RawAxiosRequestConfig) {
+        return UserApiFp(this.configuration).logout(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

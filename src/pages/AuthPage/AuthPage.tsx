@@ -5,41 +5,41 @@ import { CompanyIcon } from '@components/icons';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 import { logIn } from '@api/logIn';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from '@mui/material';
 
 export const AuthPage = () => {
   const [loginData, setLoginData] = React.useState({
     username: '',
     password: '',
   });
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   const navigate = useNavigate();
 
-  const handleLoginTest = async () => {
+  const handleLogin = async () => {
     try {
       const response = await logIn({
         username: loginData.username,
         password: loginData.password,
       });
-      console.log('Login successful:', response);
 
-      if (response.success) {
+      if (response?.success) {
         navigate('/');
       }
-    } catch (err) {
-      console.warn('Login error:', err);
+    } catch (error) {
+      setErrorMessage('Ошибка авторизации: ' + error);
+      console.error('Ошибка входа:', error);
     }
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    console.log('name,value', { name: name, value: value });
     setLoginData((prevState) => ({
       ...prevState,
       [id]: value,
     }));
+    setErrorMessage('');
   };
-
-  console.log('loginData', loginData);
 
   return (
     <div className={styles.authPage}>
@@ -51,8 +51,15 @@ export const AuthPage = () => {
           <span>CompanyName</span>
         </div>
         <h1>Sign in</h1>
+        {errorMessage && (
+          <Alert severity="error" style={{ marginBottom: '16px' }}>
+            {errorMessage}
+          </Alert>
+        )}
         <SignInForm onChange={handleInputChange} />
-        <BlueButton onClick={handleLoginTest}>Войти</BlueButton>
+        <BlueButton onClick={handleLogin} type="button">
+          Войти
+        </BlueButton>
       </div>
     </div>
   );
