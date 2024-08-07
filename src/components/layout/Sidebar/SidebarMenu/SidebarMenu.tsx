@@ -4,7 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import styles from './SidebarMenu.module.scss';
 
-export const SidebarMenu = () => {
+export const SidebarMenu = ({
+  onLogout,
+}: {
+  onLogout: () => Promise<void>;
+}) => {
   return (
     <div className={styles.sidebarMenu}>
       <Typography className={styles.menuTitle}>Меню</Typography>
@@ -16,6 +20,7 @@ export const SidebarMenu = () => {
             to={navItem.path}
             className={styles.navItem}
             key={navItem.title}
+            onClick={navItem.title === 'Выйти' ? onLogout : undefined}
           >
             <NavIcon className={styles.navIcon} />
             <span className={styles.navText}>{navItem.title}</span>

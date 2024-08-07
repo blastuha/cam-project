@@ -7,5 +7,5 @@ export const SIDEBAR_MENU = [
   { title: 'Главная', logo: HomeIcon, path: '/' },
   { title: 'Список сотрудников', logo: PeopleAltIcon, path: '/employees' },
   { title: 'Настройки', logo: SettingsIcon, path: '/settings' },
-  { title: 'Выйти', logo: LogoutIcon, path: '/logout' },
+  { title: 'Выйти', logo: LogoutIcon, path: '' },
 ];

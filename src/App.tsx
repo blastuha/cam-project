@@ -12,17 +12,21 @@ import { Layout } from '@components/layout/Layout';
 import { PrivateRoute } from '@components/PrivateRoute';
 import { EditEmployeePage } from '@pages/EditEmployeePage/EditEmployeePage';
 import { useAuth } from './hooks/index';
+import Spinner from '@components/Spinner';
 
 function App() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // Если пользователь авторизован и находится на /auth, перенаправляем на /
     if (user && window.location.pathname === ROUTES.AUTH) {
       navigate(ROUTES.HOME);
     }
   }, [user]);
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <>
