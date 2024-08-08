@@ -35,7 +35,7 @@ export const VideoPage = () => {
   return (
     <PageContainer>
       <div className={styles.videoContainer}>
-        <p>Исходное видео {videoData.filepath}</p>
+        <p className={styles.title}>Исходное видео {videoData.filename}</p>
         <video controls className={styles.videoPlayer}>
           <source
             src="http://localhost:9000/media/videos/camera17%28s1_c17%29%5B2024-06-05%2813-00-00%29_2024-06-05%2815-00-00%29%5D.mp4"
