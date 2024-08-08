@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { Configuration, UserApi } from '../../generated/openapi/main-api';
+import {
+  AnalyzerApi,
+  Configuration,
+  UserApi,
+} from '@generated/openapi/main-api/';
 
 export const basePath = import.meta.env.BASE_URL;
 
@@ -8,7 +12,6 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  // withCredentials: true,
 });
 
 api.interceptors.request.use(function (config) {
@@ -22,7 +25,17 @@ api.interceptors.request.use(function (config) {
   return config;
 });
 
+// userApi
 export const userApi = new UserApi(
+  new Configuration({
+    basePath,
+  }),
+  basePath,
+  api
+);
+
+// analyzerApi
+export const analyzerApi = new AnalyzerApi(
   new Configuration({
     basePath,
   }),

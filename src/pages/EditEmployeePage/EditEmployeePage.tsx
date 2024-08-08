@@ -112,7 +112,7 @@ export const EditEmployeePage = () => {
   }, [employeeData]);
 
   return (
-    <PageContainer className="addEmployeePage">
+    <PageContainer>
       <ContentCard className="addEmployeeCard">
         <ContentCard.Header>
           <ContentCard.HeaderTitle>

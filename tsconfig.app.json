@@ -17,7 +17,8 @@
       "@styles/*": ["styles/*"],
       "@pages/*": ["pages/*"],
       "@utils/*": ["utils/*"],
-      "@api/*": ["api/*"]
+      "@api/*": ["api/*"],
+      "@generated/*": ["generated/*"]
     },
 
     /* Bundler mode */

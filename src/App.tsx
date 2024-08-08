@@ -13,6 +13,8 @@ import { PrivateRoute } from '@components/PrivateRoute';
 import { EditEmployeePage } from '@pages/EditEmployeePage/EditEmployeePage';
 import { useAuth } from './hooks/index';
 import Spinner from '@components/Spinner';
+import { AllVideosPage } from './pages/AllVideosPage/AllVideosPage';
+import { VideoPage } from '@pages/VideoPage/VideoPage';
 
 function App() {
   const { user, loading } = useAuth();
@@ -44,9 +46,10 @@ function App() {
 
           <Route path={ROUTES.EMPLOYEES} element={<EmployeesPage />} />
           <Route path={ROUTES.ADD_EMPLOYEE} element={<AddEmployeePage />} />
-          <Route path={ROUTES.EMPLOYEE_WITH_ID} element={<EmployeePage />} />
-
           <Route path={ROUTES.EDIT_EMPLOYEE} element={<EditEmployeePage />} />
+          <Route path={ROUTES.EMPLOYEE_WITH_ID} element={<EmployeePage />} />
+          <Route path={ROUTES.ALL_VIDEOS} element={<AllVideosPage />} />
+          <Route path={ROUTES.ONE_VIDEO} element={<VideoPage />} />
 
           {/* <Route path="*" element={<Navigate to={ROUTES.ERROR} />} /> */}
         </Route>

@@ -1,0 +1,28 @@
+.videoContainer {
+  //   margin: auto;
+}
+
+.videoPlayer {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.description {
+  font-family: Inter, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  background: #c4ccf8;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px 4px 0;
+
+  .scannedDate {
+    font-size: 13px;
+    color: var(--text-gray-2);
+    margin-right: 20px;
+  }
+}
