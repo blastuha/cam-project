@@ -45,11 +45,13 @@ export const VideoPage = () => {
         </video>
 
         <div className={styles.info}>
-          <span className={styles.scannedDate}>Сканировано 08.08.2024</span>
+          <span className={styles.scannedDate}>
+            Сканировано {`${videoData.scanned_at}`}
+          </span>
           <Chip
             sx={{ height: '18px' }}
             label={videoData.status}
-            color={'primary'}
+            color={videoData.status === 'NEW' ? 'primary' : 'success'}
           />
         </div>
 

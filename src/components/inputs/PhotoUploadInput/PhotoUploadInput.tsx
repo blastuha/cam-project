@@ -6,20 +6,8 @@ import styles from './PhotoUploadInput.module.scss';
 export const PhotoUploadInput = ({
   onPhotoUpload,
 }: {
-  onPhotoUpload: (photo: string) => void;
+  onPhotoUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
-  const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const result = reader.result as string;
-        onPhotoUpload(result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   return (
     <div className={styles.photoUploadInput}>
       <input
@@ -27,7 +15,7 @@ export const PhotoUploadInput = ({
         style={{ display: 'none' }}
         id="icon-button-file"
         type="file"
-        onChange={handlePhotoChange}
+        onChange={onPhotoUpload}
       />
       <label htmlFor="icon-button-file">
         <IconButton

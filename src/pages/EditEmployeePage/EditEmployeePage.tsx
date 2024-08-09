@@ -17,29 +17,40 @@ import { editEmployee } from '@api/editEmployee';
 import { employeeStatusSelect } from '@utils/constants';
 
 export const EditEmployeePage = () => {
-  const { id } = useParams<{ id: string }>();
-
   const { data: employeeData, isFetching: isEmployeeFetching } = useQuery({
     queryKey: ['employees'],
     queryFn: () => getOneEmployee(id),
   });
-
-  const navigate = useNavigate();
-
+  const [employeePhoto, setEmployeePhoto] = React.useState(employeeData?.image);
   const [newEmployeeSchema, setNewEmployeeSchema] =
     React.useState<UserGetSchema>({
       first_name: employeeData?.first_name,
       last_name: employeeData?.last_name,
       is_active: employeeData?.is_active,
       description: employeeData?.description,
-      image: employeeData?.image,
     });
+  console.log('newEmployeeSchema', newEmployeeSchema);
 
-  const handlePhotoUpload = (photo: string) => {
-    setNewEmployeeSchema((prevState) => ({
-      ...prevState,
-      image: photo,
-    }));
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  // Объединенная функция для изменения и загрузки фото
+  const handlePhotoChangeAndUpload = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const photo = reader.result as string;
+        setNewEmployeeSchema((prevState) => ({
+          ...prevState,
+          image: photo,
+        }));
+        setEmployeePhoto(photo);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleFirstNameChange = (
@@ -107,8 +118,10 @@ export const EditEmployeePage = () => {
       last_name: employeeData?.last_name,
       is_active: employeeData?.is_active,
       description: employeeData?.description,
-      image: employeeData?.image,
     });
+    setEmployeePhoto(
+      employeeData?.image ? employeeData?.image : loadPhotoEmployee
+    );
   }, [employeeData]);
 
   return (
@@ -124,11 +137,11 @@ export const EditEmployeePage = () => {
         <ContentCard.Body className="addEmployeeBody">
           <div className={styles.addPhotoGroup}>
             <ImageContainer width="200px" height="200px" borderRadius="8px">
-              <img src={loadPhotoEmployee} alt="alushka" />
+              <img src={employeePhoto} alt="alushka" />
             </ImageContainer>
 
             <div style={{ position: 'absolute', bottom: '0px', left: '158px' }}>
-              <PhotoUploadInput onPhotoUpload={handlePhotoUpload} />
+              <PhotoUploadInput onPhotoUpload={handlePhotoChangeAndUpload} />
             </div>
           </div>
 

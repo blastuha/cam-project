@@ -18,7 +18,7 @@ export const AllVideosPage = () => {
   return (
     <PageContainer>
       <span onClick={() => navigate('/video/' + allVideosData?.data[0].id)}>
-        {allVideosData?.data[0].filename}
+        {allVideosData?.data[0] && allVideosData?.data[0].filename}
       </span>
     </PageContainer>
   );
