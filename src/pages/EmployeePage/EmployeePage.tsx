@@ -6,7 +6,7 @@ import { PageContainer } from '@components/containers/PageContainer/PageContaine
 import { ContentCard } from '@components/cards/ContentCard/ContentCard';
 import { ImageContainer } from '@components/containers/ImageContainer/ImageContainer';
 import noPhotoEmployee from '@assets/noPhotoEmployee.webp';
-import { InputInfo } from '@components/displayComponents/InputInfo';
+import { InputInfo } from '@components/display/InputInfo';
 import { Box, Chip, Typography } from '@mui/material';
 import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 import Spinner from '@components/Spinner';

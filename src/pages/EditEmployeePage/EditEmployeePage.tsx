@@ -8,19 +8,21 @@ import { ImageContainer } from '@components/containers/ImageContainer/ImageConta
 import { PhotoUploadInput } from '@components/inputs/PhotoUploadInput/PhotoUploadInput';
 import { UserGetSchema } from 'generated/openapi/main-api';
 import { MuiSelect } from '@components/selects/MuiSelect';
-import { SelectChangeEvent, TextField } from '@mui/material';
+import { Alert, SelectChangeEvent, Snackbar, TextField } from '@mui/material';
 import styles from './EditEmployeePage.module.scss';
 import { getOneEmployee } from '@api/getOneEmployee';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { editEmployee } from '@api/editEmployee';
 import { employeeStatusSelect } from '@utils/constants';
+import { isErrored } from 'stream';
 
 export const EditEmployeePage = () => {
   const { data: employeeData, isFetching: isEmployeeFetching } = useQuery({
     queryKey: ['employees'],
     queryFn: () => getOneEmployee(id),
   });
+
   const [employeePhoto, setEmployeePhoto] = React.useState(employeeData?.image);
   const [newEmployeeSchema, setNewEmployeeSchema] =
     React.useState<UserGetSchema>({
@@ -29,7 +31,9 @@ export const EditEmployeePage = () => {
       is_active: employeeData?.is_active,
       description: employeeData?.description,
     });
-  console.log('newEmployeeSchema', newEmployeeSchema);
+
+  const [showAlert, setShowAlert] = React.useState(false);
+  const [uploadError, setUploadError] = React.useState<string | null>(null);
 
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -40,6 +44,13 @@ export const EditEmployeePage = () => {
   ) => {
     const file = event.target.files?.[0];
     if (file) {
+      // Проверяем, является ли файл изображением
+      if (!file.type.startsWith('image/')) {
+        setShowAlert(true);
+        setUploadError('Можно загружать только файлы формата изображения!');
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = () => {
         const photo = reader.result as string;
@@ -48,6 +59,7 @@ export const EditEmployeePage = () => {
           image: photo,
         }));
         setEmployeePhoto(photo);
+        setUploadError(null); // Сброс ошибки при успешной загрузке
       };
       reader.readAsDataURL(file);
     }
@@ -124,6 +136,19 @@ export const EditEmployeePage = () => {
 
   return (
     <PageContainer>
+      <Snackbar
+        open={showAlert}
+        autoHideDuration={6000}
+        onClose={() => setShowAlert(false)}
+      >
+        <Alert
+          onClose={() => setShowAlert(false)}
+          severity="error"
+          sx={{ width: '100%' }}
+        >
+          {uploadError}
+        </Alert>
+      </Snackbar>
       <ContentCard className="addEmployeeCard">
         <ContentCard.Header>
           <ContentCard.HeaderTitle>
@@ -186,7 +211,9 @@ export const EditEmployeePage = () => {
               }}
             />
 
-            <BlueButton type="submit">Сохранить</BlueButton>
+            <BlueButton isDisabled={uploadError ? true : false} type="submit">
+              Сохранить
+            </BlueButton>
           </form>
         </ContentCard.Body>
       </ContentCard>
