@@ -4,3 +4,17 @@
   background: var(--background-1);
   padding: 16px;
 }
+
+.bodyContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+.infoGroup {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

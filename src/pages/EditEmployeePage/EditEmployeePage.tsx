@@ -119,9 +119,7 @@ export const EditEmployeePage = () => {
       is_active: employeeData?.is_active,
       description: employeeData?.description,
     });
-    setEmployeePhoto(
-      employeeData?.image ? employeeData?.image : loadPhotoEmployee
-    );
+    setEmployeePhoto(employeeData?.image);
   }, [employeeData]);
 
   return (
@@ -137,7 +135,10 @@ export const EditEmployeePage = () => {
         <ContentCard.Body className="addEmployeeBody">
           <div className={styles.addPhotoGroup}>
             <ImageContainer width="200px" height="200px" borderRadius="8px">
-              <img src={employeePhoto} alt="alushka" />
+              <img
+                src={employeePhoto ? employeePhoto : loadPhotoEmployee}
+                alt="employeePhoto"
+              />
             </ImageContainer>
 
             <div style={{ position: 'absolute', bottom: '0px', left: '158px' }}>
