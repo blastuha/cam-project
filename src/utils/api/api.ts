@@ -5,10 +5,16 @@ import {
   UserApi,
 } from '@generated/openapi/main-api/';
 
+// export const basePath = import.meta.env.VITE_API_URL;
 export const basePath = import.meta.env.BASE_URL;
+console.log('basePath', basePath);
+//! basePath - undefined, потому что BASE_URL.end - удален
+
+//! ошибка cors есть, даже при измененном проксировании на  https://aicams.yc-dev.bmit.ai
 
 export const api = axios.create({
   baseURL: basePath,
+  // baseURL: 'http://localhost:8000',
   headers: {
     'Content-Type': 'application/json',
   },

@@ -18,7 +18,8 @@
       "@pages/*": ["pages/*"],
       "@utils/*": ["utils/*"],
       "@api/*": ["api/*"],
-      "@generated/*": ["generated/*"]
+      "@generated/*": ["generated/*"],
+      "@hooks/*": ["hooks/*"]
     },
 
     /* Bundler mode */

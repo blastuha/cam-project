@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getVideo } from '@api/analyzer/getVideo';
 import { Chip } from '@mui/material';
+import Spinner from '@components/Spinner';
+import { getProcessingVideoStream } from '@api/analyzer/getProcessingVideoStream';
 
 export const VideoPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,8 +22,19 @@ export const VideoPage = () => {
   console.log('fullVideoData', fullVideoData);
   const videoData = fullVideoData?.data?.video_data;
 
+  const { data: procesingVideoData } = useQuery({
+    queryKey: ['video', id],
+    queryFn: () => getProcessingVideoStream(id),
+  });
+
+  console.log('procesingVideoData', procesingVideoData);
+
   if (isLoading) {
-    return <PageContainer>Загрузка...</PageContainer>;
+    return (
+      <PageContainer>
+        <Spinner />
+      </PageContainer>
+    );
   }
 
   if (error) {

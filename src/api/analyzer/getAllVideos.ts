@@ -1,5 +1,4 @@
 import { analyzerApi } from '@utils/api/api';
-import React from 'react';
 
 export const getAllVideos = async () => {
   try {

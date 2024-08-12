@@ -9,10 +9,11 @@ import { ImageContainer } from '@components/containers/ImageContainer/ImageConta
 import { PhotoUploadInput } from '@components/inputs/PhotoUploadInput/PhotoUploadInput';
 import { UserGetSchema } from 'generated/openapi/main-api';
 import { MuiSelect } from '@components/selects/MuiSelect';
-import { SelectChangeEvent, TextField } from '@mui/material';
+import { Alert, SelectChangeEvent, Snackbar, TextField } from '@mui/material';
 import { createEmployee } from '@api/createEmployee';
 import { employeeStatusSelect } from '@utils/constants';
 import { useNavigate } from 'react-router-dom';
+import { useEmployeePhotoUploader } from '@hooks/useEmployeePhotoUploader';
 
 export const AddEmployeePage = () => {
   const [newEmployeeSchema, setNewEmployeeSchema] =
@@ -23,15 +24,18 @@ export const AddEmployeePage = () => {
       description: '',
       image: '',
     });
+  const [showAlert, setShowAlert] = React.useState(false);
+  const [uploadError, setUploadError] = React.useState<string | null>(null);
+
+  const { photo: employeePhoto, handlePhotoChangeAndUpload } =
+    useEmployeePhotoUploader({
+      initialPhoto: newEmployeeSchema?.image,
+      setNewEmployeeSchema: setNewEmployeeSchema,
+      setUploadError,
+      setShowAlert,
+    });
 
   const navigate = useNavigate();
-
-  const handlePhotoUpload = (photo: string) => {
-    setNewEmployeeSchema((prevState) => ({
-      ...prevState,
-      image: photo,
-    }));
-  };
 
   const handleFirstNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -67,6 +71,7 @@ export const AddEmployeePage = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
     try {
       const response = await createEmployee({
         firstName: newEmployeeSchema.first_name || null,
@@ -78,6 +83,9 @@ export const AddEmployeePage = () => {
 
       if (response?.success) {
         navigate(`/employee/${response?.data.id}`);
+      } else {
+        setUploadError('Ошибка при создании пользователя.');
+        setShowAlert(true);
       }
 
       return response;
@@ -88,6 +96,19 @@ export const AddEmployeePage = () => {
 
   return (
     <PageContainer className="addEmployeePage">
+      <Snackbar
+        open={showAlert}
+        autoHideDuration={6000}
+        onClose={() => setShowAlert(false)}
+      >
+        <Alert
+          onClose={() => setShowAlert(false)}
+          severity="error"
+          sx={{ width: '100%' }}
+        >
+          {uploadError}
+        </Alert>
+      </Snackbar>
       <ContentCard className="addEmployeeCard">
         <ContentCard.Header>
           <ContentCard.HeaderTitle>
@@ -96,12 +117,18 @@ export const AddEmployeePage = () => {
         </ContentCard.Header>
         <ContentCard.Body className="addEmployeeBody">
           <div className={styles.addPhotoGroup}>
-            <ImageContainer width="200px" height="200px" borderRadius="8px">
+            {/* <ImageContainer width="200px" height="200px" borderRadius="8px">
               <img src={loadPhotoEmployee} alt="alushka" />
+            </ImageContainer> */}
+            <ImageContainer width="200px" height="200px" borderRadius="8px">
+              <img
+                src={employeePhoto ? employeePhoto : loadPhotoEmployee}
+                alt="employeePhoto"
+              />
             </ImageContainer>
 
             <div style={{ position: 'absolute', bottom: '0px', left: '158px' }}>
-              <PhotoUploadInput onPhotoUpload={handlePhotoUpload} />
+              <PhotoUploadInput onPhotoUpload={handlePhotoChangeAndUpload} />
             </div>
           </div>
 
@@ -140,7 +167,9 @@ export const AddEmployeePage = () => {
               fullWidth
             />
 
-            <BlueButton type="submit">Добавить</BlueButton>
+            <BlueButton isDisabled={uploadError ? true : false} type="submit">
+              Сохранить
+            </BlueButton>
           </form>
         </ContentCard.Body>
       </ContentCard>

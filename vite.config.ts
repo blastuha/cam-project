@@ -15,6 +15,7 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, './src/styles'),
       '@api': path.resolve(__dirname, './src/api'),
       '@generated': path.resolve(__dirname, './src/generated'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
     },
   },
   server: {
@@ -26,4 +27,6 @@ export default defineConfig({
       },
     },
   },
+
+  //! если выключить проксирование выше - то и со вторым вариантом корс ошибка
 });

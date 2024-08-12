@@ -15,7 +15,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { editEmployee } from '@api/editEmployee';
 import { employeeStatusSelect } from '@utils/constants';
-import { isErrored } from 'stream';
+import { useEmployeePhotoUploader } from '../../hooks/';
 
 export const EditEmployeePage = () => {
   const { data: employeeData, isFetching: isEmployeeFetching } = useQuery({
@@ -23,7 +23,6 @@ export const EditEmployeePage = () => {
     queryFn: () => getOneEmployee(id),
   });
 
-  const [employeePhoto, setEmployeePhoto] = React.useState(employeeData?.image);
   const [newEmployeeSchema, setNewEmployeeSchema] =
     React.useState<UserGetSchema>({
       first_name: employeeData?.first_name,
@@ -35,35 +34,24 @@ export const EditEmployeePage = () => {
   const [showAlert, setShowAlert] = React.useState(false);
   const [uploadError, setUploadError] = React.useState<string | null>(null);
 
+  console.log('uploadError', uploadError);
+
+  const {
+    photo: employeePhoto,
+    setPhoto: setEmployeePhoto,
+    handlePhotoChangeAndUpload,
+  } = useEmployeePhotoUploader({
+    initialPhoto: newEmployeeSchema?.image,
+    setNewEmployeeSchema: setNewEmployeeSchema,
+    setUploadError,
+    setShowAlert,
+  });
+
+  console.log('employeePhoto', employeePhoto);
+  console.log('newEmployeeSchema', newEmployeeSchema);
+
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
-  // Объединенная функция для изменения и загрузки фото
-  const handlePhotoChangeAndUpload = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      // Проверяем, является ли файл изображением
-      if (!file.type.startsWith('image/')) {
-        setShowAlert(true);
-        setUploadError('Можно загружать только файлы формата изображения!');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        const photo = reader.result as string;
-        setNewEmployeeSchema((prevState) => ({
-          ...prevState,
-          image: photo,
-        }));
-        setEmployeePhoto(photo);
-        setUploadError(null); // Сброс ошибки при успешной загрузке
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleFirstNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -116,11 +104,14 @@ export const EditEmployeePage = () => {
 
       if (response?.success) {
         navigate(`/employee/${employeeData?.id}`);
+      } else {
+        setUploadError('Ошибка при редактировании пользователя.');
+        setShowAlert(true);
       }
 
       return response;
     } catch (error) {
-      console.error('Ошибка при создании пользователя:', error);
+      console.error('Ошибка при редактировании пользователя:', error);
     }
   };
 
@@ -132,7 +123,7 @@ export const EditEmployeePage = () => {
       description: employeeData?.description,
     });
     setEmployeePhoto(employeeData?.image);
-  }, [employeeData]);
+  }, [employeeData, setEmployeePhoto]);
 
   return (
     <PageContainer>
