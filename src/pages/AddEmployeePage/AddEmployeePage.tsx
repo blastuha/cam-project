@@ -27,6 +27,12 @@ export const AddEmployeePage = () => {
   const [showAlert, setShowAlert] = React.useState(false);
   const [uploadError, setUploadError] = React.useState<string | null>(null);
 
+  // Переменные состояния для ошибок валидации
+  const [firstNameError, setFirstNameError] = React.useState<string | null>(
+    null
+  );
+  const [lastNameError, setLastNameError] = React.useState<string | null>(null);
+
   const { photo: employeePhoto, handlePhotoChangeAndUpload } =
     useEmployeePhotoUploader({
       initialPhoto: newEmployeeSchema?.image,
@@ -44,6 +50,9 @@ export const AddEmployeePage = () => {
       ...prevState,
       first_name: event.target.value,
     }));
+    if (event.target.value) {
+      setFirstNameError(null); // Очистка ошибки при вводе
+    }
   };
 
   const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +60,9 @@ export const AddEmployeePage = () => {
       ...prevState,
       last_name: event.target.value,
     }));
+    if (event.target.value) {
+      setLastNameError(null); // Очистка ошибки при вводе
+    }
   };
 
   const handleSelectChange = (event: SelectChangeEvent) => {
@@ -72,6 +84,18 @@ export const AddEmployeePage = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    // Проверка на пустые поля
+    if (!newEmployeeSchema.first_name) {
+      setFirstNameError('Имя не может быть пустым');
+      setShowAlert(true);
+      return;
+    }
+    if (!newEmployeeSchema.last_name) {
+      setLastNameError('Фамилия не может быть пустой');
+      setShowAlert(true);
+      return;
+    }
+
     try {
       const response = await createEmployee({
         firstName: newEmployeeSchema.first_name || null,
@@ -91,6 +115,8 @@ export const AddEmployeePage = () => {
       return response;
     } catch (error) {
       console.error('Ошибка при создании пользователя:', error);
+      setUploadError('Произошла ошибка при создании пользователя.');
+      setShowAlert(true);
     }
   };
 
@@ -106,7 +132,7 @@ export const AddEmployeePage = () => {
           severity="error"
           sx={{ width: '100%' }}
         >
-          {uploadError}
+          {uploadError || firstNameError || lastNameError}
         </Alert>
       </Snackbar>
       <ContentCard className="addEmployeeCard">
@@ -117,9 +143,6 @@ export const AddEmployeePage = () => {
         </ContentCard.Header>
         <ContentCard.Body className="addEmployeeBody">
           <div className={styles.addPhotoGroup}>
-            {/* <ImageContainer width="200px" height="200px" borderRadius="8px">
-              <img src={loadPhotoEmployee} alt="alushka" />
-            </ImageContainer> */}
             <ImageContainer width="200px" height="200px" borderRadius="8px">
               <img
                 src={employeePhoto ? employeePhoto : loadPhotoEmployee}

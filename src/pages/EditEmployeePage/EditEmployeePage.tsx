@@ -33,8 +33,10 @@ export const EditEmployeePage = () => {
 
   const [showAlert, setShowAlert] = React.useState(false);
   const [uploadError, setUploadError] = React.useState<string | null>(null);
-
-  console.log('uploadError', uploadError);
+  const [firstNameError, setFirstNameError] = React.useState<string | null>(
+    null
+  );
+  const [lastNameError, setLastNameError] = React.useState<string | null>(null);
 
   const {
     photo: employeePhoto,
@@ -47,9 +49,6 @@ export const EditEmployeePage = () => {
     setShowAlert,
   });
 
-  console.log('employeePhoto', employeePhoto);
-  console.log('newEmployeeSchema', newEmployeeSchema);
-
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
@@ -60,6 +59,9 @@ export const EditEmployeePage = () => {
       ...prevState,
       first_name: event.target.value,
     }));
+    if (event.target.value) {
+      setFirstNameError(null); // Очистка ошибки при вводе
+    }
   };
 
   const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +69,9 @@ export const EditEmployeePage = () => {
       ...prevState,
       last_name: event.target.value,
     }));
+    if (event.target.value) {
+      setLastNameError(null); // Очистка ошибки при вводе
+    }
   };
 
   const handleSelectChange = (event: SelectChangeEvent) => {
@@ -86,11 +91,23 @@ export const EditEmployeePage = () => {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    // Проверка на пустые поля
+    if (!newEmployeeSchema.first_name) {
+      setFirstNameError('Имя не может быть пустым');
+      setShowAlert(true);
+      return;
+    }
+    if (!newEmployeeSchema.last_name) {
+      setLastNameError('Фамилия не может быть пустой');
+      setShowAlert(true);
+      return;
+    }
+
     if (!employeeData?.id) {
       console.error('Не удалось получить ID сотрудника');
       return;
     }
-    event.preventDefault();
 
     try {
       const response = await editEmployee({
@@ -102,7 +119,7 @@ export const EditEmployeePage = () => {
         image: newEmployeeSchema.image || null,
       });
 
-      if (response?.success) {
+      if (response?.success && firstNameError && lastNameError) {
         navigate(`/employee/${employeeData?.id}`);
       } else {
         setUploadError('Ошибка при редактировании пользователя.');
@@ -137,7 +154,7 @@ export const EditEmployeePage = () => {
           severity="error"
           sx={{ width: '100%' }}
         >
-          {uploadError}
+          {uploadError || firstNameError || lastNameError}
         </Alert>
       </Snackbar>
       <ContentCard className="addEmployeeCard">
