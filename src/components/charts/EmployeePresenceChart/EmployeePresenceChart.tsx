@@ -58,7 +58,6 @@ export const EmployeePresenceChart = ({ employee }: { employee: Employee }) => {
     <div className={styles.chartContainer}>
       <h1>График присутствия сотрудника</h1>
       <ResponsiveContainer width="100%" height={400}>
-        {/* Используем ResponsiveContainer */}
         <AreaChart
           data={chartData}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -71,7 +70,7 @@ export const EmployeePresenceChart = ({ employee }: { employee: Employee }) => {
             type="monotone"
             dataKey="presence"
             stroke="#8884d8"
-            fill="#8884d8"
+            fill="#c4ccf8"
           />
         </AreaChart>
       </ResponsiveContainer>
