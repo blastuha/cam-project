@@ -1,0 +1,309 @@
+{
+  "success": true,
+  "data": {
+    "video_data": {
+      "id": "d846e76d-4d82-48a6-99cf-0ca57de94131",
+      "description": null,
+      "filename": "camera17(s1_c17)[2024-06-05(13-00-00)_2024-06-05(15-00-00)].mp4",
+      "filepath": "https://s3.aicams.yc-dev.bmit.ai/media/videos/camera17%28s1_c17%29%5B2024-06-05%2813-00-00%29_2024-06-05%2815-00-00%29%5D.mp4?AWSAccessKeyId=ZSsxBbqQaZfrfea&Signature=s9VioOe4MduvIqORo2n%2F4FsY%2BJ0%3D&Expires=1723717034",
+      "result_video_filepath": "https://s3.aicams.yc-dev.bmit.ai/media/result_videos/camera17s1_c172024-06-0513-00-00_2024-06-0515-00-00.mp4-compressed.mp4?AWSAccessKeyId=ZSsxBbqQaZfrfea&Signature=ep2QP6tUOOILXzxpn%2BnoF3Glfiw%3D&Expires=1723717034",
+      "status": "PROCESSED",
+      "date_start": "2024-06-05T13:00:00Z",
+      "date_end": "2024-06-05T15:00:00Z",
+      "process_start_at": "2024-08-12T15:19:22.406Z",
+      "process_end_at": "2024-08-12T23:57:09.760Z",
+      "scanned_at": "2024-08-09T09:06:16.530Z",
+      "process_url": null
+    },
+    "users": {
+      "Anastasia_B (d4445355-176e-48fb-95e0-59396db8be2a)": {
+        "first_name": "Anastasia",
+        "last_name": "B",
+        "is_active": true,
+        "id": "d4445355-176e-48fb-95e0-59396db8be2a"
+      },
+      "Firuz_P (666efe5b-6370-461d-ade3-3e38b7011cad)": {
+        "first_name": "Firuz",
+        "last_name": "P",
+        "is_active": true,
+        "id": "666efe5b-6370-461d-ade3-3e38b7011cad"
+      },
+      "Maxim_S (36810319-c886-4fa0-9ba8-a1b8c6763c3b)": {
+        "first_name": "Maxim",
+        "last_name": "S",
+        "is_active": true,
+        "id": "36810319-c886-4fa0-9ba8-a1b8c6763c3b"
+      },
+      "Sergey_P (37e1c9ff-ebd9-43f8-81f8-3740116bb8cf)": {
+        "first_name": "Sergey",
+        "last_name": "P",
+        "is_active": true,
+        "id": "37e1c9ff-ebd9-43f8-81f8-3740116bb8cf"
+      },
+      "Vitaliy_V (143e3b77-108f-4045-933e-23f1b7a54cce)": {
+        "first_name": "Vitaliy",
+        "last_name": "V",
+        "is_active": true,
+        "id": "143e3b77-108f-4045-933e-23f1b7a54cce"
+      }
+    },
+    "fragments": [
+      {
+        "title": "Firuz_P 666efe5b-6370-461d-ade3-3e38b7011cad",
+        "user_id": "666efe5b-6370-461d-ade3-3e38b7011cad",
+        "total_time": 44.68,
+        "total_percent": 0.62,
+        "timings": [
+          {
+            "id": "68571c95-2756-475a-923c-9d8d812170b5",
+            "track_id": 76,
+            "data_group_name": "Firuz_P 666efe5b-6370-461d-ade3-3e38b7011cad",
+            "dt_start": "2024-06-05T13:12:44.280Z",
+            "dt_end": "2024-06-05T13:13:26.240Z"
+          },
+          {
+            "id": "b74a7930-1dfd-423d-bbbb-f2fc1009fd67",
+            "track_id": 76,
+            "data_group_name": "Firuz_P 666efe5b-6370-461d-ade3-3e38b7011cad",
+            "dt_start": "2024-06-05T13:28:34.760Z",
+            "dt_end": "2024-06-05T13:28:37.480Z"
+          }
+        ]
+      },
+      {
+        "title": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+        "user_id": "37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+        "total_time": 4417.24,
+        "total_percent": 61.35,
+        "timings": [
+          {
+            "id": "ada642d8-7cb7-4cf0-9e11-38eba2c70e2a",
+            "track_id": 22,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T13:00:09.640Z",
+            "dt_end": "2024-06-05T13:05:41Z"
+          },
+          {
+            "id": "ced0e508-0530-407a-baa7-684fec360ea3",
+            "track_id": 36,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T13:13:50.680Z",
+            "dt_end": "2024-06-05T13:14:19.960Z"
+          },
+          {
+            "id": "1baa30f5-0046-4c7c-9d93-08fc81f90217",
+            "track_id": 70,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T13:16:45.280Z",
+            "dt_end": "2024-06-05T13:22:14.320Z"
+          },
+          {
+            "id": "056366a1-2866-40dd-9ccd-135164d363e7",
+            "track_id": 91,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T13:27:37.640Z",
+            "dt_end": "2024-06-05T13:28:21.160Z"
+          },
+          {
+            "id": "12a1d9c6-0c5e-4b1a-aac5-2c283d4274ec",
+            "track_id": 176,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T13:30:37.520Z",
+            "dt_end": "2024-06-05T13:45:40.360Z"
+          },
+          {
+            "id": "f1133ce6-711f-4b61-93d8-e8c9fc1ee3cc",
+            "track_id": 241,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T13:49:19.160Z",
+            "dt_end": "2024-06-05T14:09:03.560Z"
+          },
+          {
+            "id": "6a9361d1-dab7-44e5-97a1-9e58586ec8ab",
+            "track_id": 255,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T14:11:30.480Z",
+            "dt_end": "2024-06-05T14:13:57.360Z"
+          },
+          {
+            "id": "1c1bbc01-3d5c-455b-88f1-6b42962ee373",
+            "track_id": 265,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T14:16:16.200Z",
+            "dt_end": "2024-06-05T14:16:56.880Z"
+          },
+          {
+            "id": "ecd722f6-c9cc-4c31-ac5a-201605d4b6ee",
+            "track_id": 296,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T14:19:12.280Z",
+            "dt_end": "2024-06-05T14:24:09.840Z"
+          },
+          {
+            "id": "27c2be13-ce67-4799-b13f-7e0898538cd3",
+            "track_id": 311,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T14:26:53.920Z",
+            "dt_end": "2024-06-05T14:28:45.600Z"
+          },
+          {
+            "id": "0a7d7792-8ffb-4467-95ea-6e52eae0cadc",
+            "track_id": 411,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T14:31:28.440Z",
+            "dt_end": "2024-06-05T14:41:12.560Z"
+          },
+          {
+            "id": "88ea9c68-636d-47fe-9ee3-5a8333032e89",
+            "track_id": 456,
+            "data_group_name": "Sergey_P 37e1c9ff-ebd9-43f8-81f8-3740116bb8cf",
+            "dt_start": "2024-06-05T14:44:29.200Z",
+            "dt_end": "2024-06-05T14:51:25.080Z"
+          }
+        ]
+      },
+      {
+        "title": "Unknown (13)",
+        "user_id": "None",
+        "total_time": 105.08,
+        "total_percent": 1.46,
+        "timings": [
+          {
+            "id": "11abdbd5-480a-411f-aea0-5172ab21d26b",
+            "track_id": 13,
+            "data_group_name": "Unknown (13)",
+            "dt_start": "2024-06-05T13:06:30.320Z",
+            "dt_end": "2024-06-05T13:08:15.400Z"
+          }
+        ]
+      },
+      {
+        "title": "Unknown (161)",
+        "user_id": "None",
+        "total_time": 222.56,
+        "total_percent": 3.09,
+        "timings": [
+          {
+            "id": "101c4f5c-72a5-4f1b-8aca-d53bcc7a0459",
+            "track_id": 161,
+            "data_group_name": "Unknown (161)",
+            "dt_start": "2024-06-05T13:45:02.720Z",
+            "dt_end": "2024-06-05T13:48:45.280Z"
+          }
+        ]
+      },
+      {
+        "title": "Unknown (244)",
+        "user_id": "None",
+        "total_time": 222.68,
+        "total_percent": 3.09,
+        "timings": [
+          {
+            "id": "5a06e015-ae7a-4f89-8d36-80c304e40b7d",
+            "track_id": 244,
+            "data_group_name": "Unknown (244)",
+            "dt_start": "2024-06-05T14:12:41.400Z",
+            "dt_end": "2024-06-05T14:16:24.080Z"
+          }
+        ]
+      },
+      {
+        "title": "Unknown (257)",
+        "user_id": "None",
+        "total_time": 252.52,
+        "total_percent": 3.51,
+        "timings": [
+          {
+            "id": "0f1384ab-7d60-4827-82dd-95e842c3bd80",
+            "track_id": 257,
+            "data_group_name": "Unknown (257)",
+            "dt_start": "2024-06-05T14:16:28.520Z",
+            "dt_end": "2024-06-05T14:20:41.040Z"
+          }
+        ]
+      },
+      {
+        "title": "Unknown (295)",
+        "user_id": "None",
+        "total_time": 105.88,
+        "total_percent": 1.47,
+        "timings": [
+          {
+            "id": "562d681f-5c82-4c06-99b5-2db45fccdfaa",
+            "track_id": 295,
+            "data_group_name": "Unknown (295)",
+            "dt_start": "2024-06-05T14:26:38.440Z",
+            "dt_end": "2024-06-05T14:28:24.320Z"
+          }
+        ]
+      },
+      {
+        "title": "Unknown (357)",
+        "user_id": "None",
+        "total_time": 108.76,
+        "total_percent": 1.51,
+        "timings": [
+          {
+            "id": "c5e8b12c-cd3b-4edf-b1e2-cfa30fc40eb3",
+            "track_id": 357,
+            "data_group_name": "Unknown (357)",
+            "dt_start": "2024-06-05T14:38:40.880Z",
+            "dt_end": "2024-06-05T14:40:29.640Z"
+          }
+        ]
+      },
+      {
+        "title": "Unknown (369)",
+        "user_id": "None",
+        "total_time": 118.92,
+        "total_percent": 1.65,
+        "timings": [
+          {
+            "id": "9fcbf027-20f7-4409-91ed-c33666c59eb2",
+            "track_id": 369,
+            "data_group_name": "Unknown (369)",
+            "dt_start": "2024-06-05T14:40:30.440Z",
+            "dt_end": "2024-06-05T14:42:29.360Z"
+          }
+        ]
+      },
+      {
+        "title": "Vitaliy_V 143e3b77-108f-4045-933e-23f1b7a54cce",
+        "user_id": "143e3b77-108f-4045-933e-23f1b7a54cce",
+        "total_time": 1829.3200000000002,
+        "total_percent": 25.41,
+        "timings": [
+          {
+            "id": "d72726cb-1a40-471a-bf73-2085651fa23a",
+            "track_id": 181,
+            "data_group_name": "Vitaliy_V 143e3b77-108f-4045-933e-23f1b7a54cce",
+            "dt_start": "2024-06-05T13:42:38.480Z",
+            "dt_end": "2024-06-05T13:44:31.520Z"
+          },
+          {
+            "id": "6a4dad2e-70d1-4f91-9ec2-22a3f042477c",
+            "track_id": 289,
+            "data_group_name": "Vitaliy_V 143e3b77-108f-4045-933e-23f1b7a54cce",
+            "dt_start": "2024-06-05T13:50:22.120Z",
+            "dt_end": "2024-06-05T14:10:38.080Z"
+          },
+          {
+            "id": "31de4847-d745-40b5-8785-9a5f03d13098",
+            "track_id": 305,
+            "data_group_name": "Vitaliy_V 143e3b77-108f-4045-933e-23f1b7a54cce",
+            "dt_start": "2024-06-05T14:23:59.320Z",
+            "dt_end": "2024-06-05T14:26:34.040Z"
+          },
+          {
+            "id": "814b3bc2-0fa8-45b9-9d29-426bc81a1261",
+            "track_id": 326,
+            "data_group_name": "Vitaliy_V 143e3b77-108f-4045-933e-23f1b7a54cce",
+            "dt_start": "2024-06-05T14:29:55.600Z",
+            "dt_end": "2024-06-05T14:35:41.200Z"
+          }
+        ]
+      }
+    ]
+  },
+  "error": null
+}

@@ -10,6 +10,8 @@ export const PageContainer = ({
   className?: string;
 }) => {
   return (
-    <div className={clsx(styles.pageContainer, className)}>{children}</div>
+    <div className={clsx(styles.pageContainer, className && styles[className])}>
+      {children}
+    </div>
   );
 };

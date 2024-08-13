@@ -1,5 +1,13 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
 .videoContainer {
-  //   margin: auto;
+  width: 100%;
 }
 
 .title {
@@ -31,4 +39,25 @@
     color: var(--text-gray-2);
     margin-right: 20px;
   }
+}
+
+.processingBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+
+  p {
+    margin-bottom: 14px;
+  }
+}
+
+.imgBlock {
+  position: relative;
+}
+
+.processingImg {
+  width: 400px;
+  border-radius: 16px;
 }

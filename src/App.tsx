@@ -15,6 +15,7 @@ import { useAuth } from './hooks/index';
 import Spinner from '@components/Spinner';
 import { AllVideosPage } from './pages/AllVideosPage/AllVideosPage';
 import { VideoPage } from '@pages/VideoPage/VideoPage';
+import { ErrorPage } from '@pages/ErrorPage/ErrorPage';
 
 function App() {
   const { user, loading } = useAuth();
@@ -34,6 +35,7 @@ function App() {
     <>
       <Routes>
         <Route path={ROUTES.AUTH} element={<AuthPage />} />
+        <Route path="*" element={<ErrorPage />} />
         <Route element={<Layout />}>
           <Route
             path={ROUTES.HOME}

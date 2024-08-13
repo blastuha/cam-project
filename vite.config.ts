@@ -18,15 +18,16 @@ export default defineConfig({
       '@hooks': path.resolve(__dirname, './src/hooks'),
     },
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       // target: 'http://localhost:8000',
+  //       target: 'https://aicams.yc-dev.bmit.ai',
+  //       changeOrigin: true,
+  //       secure: false,
+  //     },
+  //   },
+  // },
 
   //! если выключить проксирование выше - то и со вторым вариантом корс ошибка
 });
