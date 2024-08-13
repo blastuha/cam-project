@@ -62,7 +62,11 @@ export const VideoPage = () => {
 
           <div className={styles.info}>
             <span className={styles.scannedDate}>
-              Сканировано {`${videoData.scanned_at}`}
+              Сканировано{' '}
+              {`${
+                videoData.scanned_at &&
+                new Date(videoData.scanned_at).toLocaleDateString()
+              }`}
             </span>
             <Chip
               sx={{ height: '18px' }}
