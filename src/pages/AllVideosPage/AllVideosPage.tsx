@@ -20,6 +20,10 @@ export const AllVideosPage = () => {
       <span onClick={() => navigate('/video/' + allVideosData?.data[0].id)}>
         {allVideosData?.data[0] && allVideosData?.data[0].filename}
       </span>
+
+      <p onClick={() => navigate('/video/' + allVideosData?.data[1].id)}>
+        {allVideosData?.data[1] && allVideosData?.data[1].filename}
+      </p>
     </PageContainer>
   );
 };

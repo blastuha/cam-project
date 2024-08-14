@@ -1,5 +1,5 @@
 export const getToken = (): string | null => {
-  const tokenString = localStorage.getItem('csrfToken');
+  const tokenString = localStorage.getItem('token');
 
   if (!tokenString) {
     return null;

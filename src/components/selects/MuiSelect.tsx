@@ -46,8 +46,8 @@ export function MuiSelect({
             },
           }}
         >
-          {selectItems.map((item) => (
-            <MenuItem key={item.value} value={item.value}>
+          {selectItems.map((item, i) => (
+            <MenuItem key={i} value={item.value}>
               {item.text}
             </MenuItem>
           ))}

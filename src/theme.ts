@@ -29,6 +29,9 @@ const baseTheme = createTheme({
     success: {
       main: '#1aa053',
     },
+    warning: {
+      main: '#f16a1b',
+    },
   },
 });
 

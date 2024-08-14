@@ -13,6 +13,7 @@ export const api = axios.create({
   // baseURL: basePath,
   // baseURL: 'http://localhost:5173',
   baseURL: 'https://aicams.yc-dev.bmit.ai',
+  // baseURL: '/',
   headers: {
     'Content-Type': 'application/json',
   },
