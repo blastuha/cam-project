@@ -6,56 +6,50 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getVideo } from '@api/analyzer/getVideo';
 import { Button, Chip, SelectChangeEvent } from '@mui/material';
 import Spinner from '@components/Spinner';
-import { getProcessingVideoStream } from '@api/analyzer/getProcessingVideoStream';
-import { ImageContainer } from '@components/containers/ImageContainer/ImageContainer';
-import { getToken } from '@utils/api/getToken';
+
 import processingImg from '@assets/tempImages/processingImg.jpg';
-import tempResponse from './response.json';
 import { EmployeePresenceChart } from '@components/charts/EmployeePresenceChart/EmployeePresenceChart';
 import { MuiSelect } from '@components/selects/MuiSelect';
 import { manageUserInVideo } from '@api/analyzer/manageUserInVideo';
+import { VideoContainer } from '@components/containers/VideoContainer/VideoContainer';
+import { BlueButton } from '@components/buttons/BlueButton/BlueButton';
 
 export const VideoPage = () => {
   const { id } = useParams<{ id: string }>();
   const {
     data: fullVideoData,
     isLoading,
+    isFetching,
     error,
+    refetch: fullVideoDataRefetch,
   } = useQuery({
     queryKey: ['video', id],
     queryFn: () => getVideo(id),
   });
   console.log('fullVideoData', fullVideoData);
 
-  const videoUsers = fullVideoData?.data.users || {}; // Объект сотрудников
+  const videoUsers = fullVideoData?.data.users || {};
   const videoData = fullVideoData?.data?.video_data;
-  const fragments = fullVideoData?.data?.fragments || []; // Список фрагментов для графиков
+  const fragments = fullVideoData?.data?.fragments || [];
 
   const [selectedUserId, setSelectedUserId] = React.useState<string>('');
-  const [selectedTimingId, setSelectedTimingId] = React.useState<string>('');
   const [selectedTargetUserId, setSelectedTargetUserId] =
     React.useState<string>('');
-  console.log('selectedTargetUserId', selectedTargetUserId);
+  const [selectsBlockHeight, setSelectsBlockHeight] = React.useState<
+    number | null
+  >(null);
 
-  const unknownFragments = fragments.filter(
-    (fragment) => fragment.user_id === 'None'
-  );
-  const timingOptions = unknownFragments.flatMap((fragment) =>
-    fragment.timings.map((timing) => ({
-      text: `Timing ${timing.dt_start} - ${timing.dt_end}`,
-      value: timing.id,
-    }))
-  );
+  const selectsBlockRef = React.useRef<HTMLDivElement>(null);
 
   // Преобразуем объект сотрудников в массив для селекта
-  const userOptions = fragments.map((fragment) => ({
-    text: `${fragment.title}`,
-    value: fragment.user_id,
+  const fragmentsOptions = fragments.map((fragment) => ({
+    text: fragment.title,
+    value: fragment.user_id ?? '',
   }));
 
-  const userOptions2 = Object.values(videoUsers).map((user) => ({
+  const userOptions = Object.values(videoUsers).map((user) => ({
     text: `${user.first_name} ${user.last_name}`,
-    value: user.id,
+    value: user.id ?? '',
   }));
 
   const selectedFragment = fragments.find(
@@ -66,29 +60,42 @@ export const VideoPage = () => {
     setSelectedUserId(event.target.value);
   };
 
-  const handleTimingChange = (event: SelectChangeEvent) => {
-    setSelectedTimingId(event.target.value);
-  };
-
   const handleTargetUserChange = (event: SelectChangeEvent) => {
     setSelectedTargetUserId(event.target.value);
   };
 
   const mutation = useMutation({
-    mutationFn: () => manageUserInVideo(selectedTimingId, selectedTargetUserId),
+    mutationFn: () => {
+      const timingsId =
+        selectedFragment?.timings
+          .map((timing) => timing.id)
+          .filter((id): id is string => !!id) || [];
+      return manageUserInVideo(timingsId, selectedTargetUserId);
+    },
     onSuccess: () => {
-      console.log('Привязка успешно выполнена');
-      // Можно добавить логику для обновления интерфейса после успешной привязки
+      fullVideoDataRefetch();
     },
   });
 
   const handleBindClick = () => {
-    if (selectedTargetUserId && selectedTimingId) {
+    if (selectedTargetUserId && selectedFragment) {
       mutation.mutate();
     } else {
-      console.warn('Не выбран пользователь для привязки или тайминг');
+      console.warn('Не выбран пользователь для привязки или фрагмент');
     }
   };
+
+  React.useEffect(() => {
+    if (fragments.length > 0 && !selectedUserId) {
+      setSelectedUserId(fragments[0].user_id ?? '');
+    }
+  }, [fragments, selectedUserId]);
+
+  React.useEffect(() => {
+    if (selectsBlockRef.current) {
+      setSelectsBlockHeight(selectsBlockRef.current.offsetHeight);
+    }
+  }, [selectedUserId, selectedTargetUserId, isFetching]);
 
   if (isLoading) {
     return (
@@ -109,39 +116,15 @@ export const VideoPage = () => {
   return (
     <PageContainer>
       <div className={styles.container}>
-        <div className={styles.videoContainer}>
-          <p className={styles.title}>Исходное видео {videoData.filename}</p>
-          <video controls className={styles.videoPlayer}>
-            <source src={videoData.filepath} type="video/mp4" />
-            <p>Ваш браузер не поддерживает воспроизведение видео.</p>
-          </video>
-
-          <div className={styles.info}>
-            <span className={styles.scannedDate}>
-              Сканировано{' '}
-              {`${
-                videoData.scanned_at &&
-                new Date(videoData.scanned_at).toLocaleDateString()
-              }`}
-            </span>
-            <Chip
-              sx={{ height: '18px' }}
-              label={videoData.status}
-              color={
-                videoData.status === 'NEW'
-                  ? 'primary'
-                  : videoData.status === 'PROCESSED'
-                  ? 'success'
-                  : videoData.status === 'IN PROGRESS'
-                  ? 'warning'
-                  : 'primary'
-              }
-            />
-          </div>
-          <p className={styles.description}>
-            {videoData.description || 'Описание отсутствует'}
-          </p>
-        </div>
+        {videoData.status && videoData.status !== 'PROCESSED' && (
+          <VideoContainer
+            videoDescription={videoData.description}
+            videoFileName={videoData.filename}
+            videoFilePath={videoData.filepath}
+            videoScannedAt={videoData.scanned_at}
+            videoStatus={videoData.status}
+          />
+        )}
 
         {videoData.status && videoData.status === 'IN PROGRESS' && (
           <div className={styles.processingBlock}>
@@ -157,62 +140,49 @@ export const VideoPage = () => {
           </div>
         )}
 
-        {videoData.status === 'PROCESSED' && (
-          <video
-            controls
-            className={styles.videoPlayer}
-            style={{ marginTop: '26px' }}
-          >
-            <source
-              src={videoData.result_video_filepath ?? ''}
-              type="video/mp4"
+        {videoData.status === 'PROCESSED' &&
+          videoData.result_video_filepath && (
+            <VideoContainer
+              videoDescription={videoData.description}
+              videoFileName={videoData.filename}
+              videoFilePath={videoData.result_video_filepath}
+              videoScannedAt={videoData.scanned_at}
+              videoStatus={videoData.status}
             />
-            <p>Ваш браузер не поддерживает воспроизведение видео.</p>
-          </video>
-        )}
-
-        <div style={{ marginTop: '40px', maxWidth: '300px' }}>
-          <MuiSelect
-            label={'Выберите фрагменты'}
-            value={selectedUserId}
-            onChange={handleUserChange}
-            selectItems={userOptions}
-            labelId="employee-select"
-          />
-        </div>
+          )}
 
         {videoData.status === 'PROCESSED' && selectedFragment && (
           <EmployeePresenceChart employee={selectedFragment} />
         )}
+        {isFetching ? (
+          <div style={{ height: selectsBlockHeight ?? 'auto' }}>
+            <Spinner />
+          </div>
+        ) : (
+          videoData.status === 'PROCESSED' && (
+            <div className={styles.selectsBlock} ref={selectsBlockRef}>
+              <MuiSelect
+                label={'Выберите фрагменты'}
+                value={selectedUserId}
+                onChange={handleUserChange}
+                selectItems={fragmentsOptions}
+                labelId="employee-select"
+              />
 
-        <div style={{ marginTop: '20px', maxWidth: '300px' }}>
-          <MuiSelect
-            label={'Выберите тайминг'}
-            value={selectedTimingId}
-            onChange={handleTimingChange}
-            selectItems={timingOptions}
-            labelId="timing-select"
-          />
-        </div>
+              <MuiSelect
+                label={'Привязать фрагменты'}
+                value={selectedTargetUserId}
+                onChange={handleTargetUserChange}
+                selectItems={userOptions}
+                labelId="target-user-select"
+              />
 
-        <div style={{ marginTop: '20px', maxWidth: '300px' }}>
-          <MuiSelect
-            label={'Выберите пользователя для привязки таймингов'}
-            value={selectedTargetUserId}
-            onChange={handleTargetUserChange}
-            selectItems={userOptions2}
-            labelId="target-user-select"
-          />
-        </div>
-
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleBindClick}
-          style={{ marginTop: '20px' }}
-        >
-          Привязать
-        </Button>
+              <BlueButton type="button" onClick={handleBindClick}>
+                Привязать
+              </BlueButton>
+            </div>
+          )
+        )}
       </div>
     </PageContainer>
   );

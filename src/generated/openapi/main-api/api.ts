@@ -200,10 +200,10 @@ export interface LoginSchema {
 export interface ManageUserInVideoUserRequestData {
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof ManageUserInVideoUserRequestData
      */
-    'user_in_video_data_id': string;
+    'user_in_video_data_id': Array<string>;
     /**
      * 
      * @type {string}
@@ -630,6 +630,18 @@ export interface VideoAnalyzeRequestData {
      * @memberof VideoAnalyzeRequestData
      */
     'unknown_tracks_diapasons_discard_seconds'?: number | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof VideoAnalyzeRequestData
+     */
+    'download_video'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof VideoAnalyzeRequestData
+     */
+    'skip_frames'?: number;
 }
 /**
  * 
@@ -1060,6 +1072,8 @@ export const AnalyzerApiAxiosParamCreator = function (configuration?: Configurat
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication AICamsAdminCookieAuth required
 
 
     
@@ -1684,6 +1698,46 @@ export class AnalyzerApi extends BaseAPI {
 export const ScannerApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Скачивание видео по ссылке
+         * @summary Download New Video
+         * @param {string} uri 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        scannerDownloadVideo: async (uri: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uri' is not null or undefined
+            assertParamExists('scannerDownloadVideo', 'uri', uri)
+            const localVarPath = `/api/v1/scanner/videos/download`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication AICamsAdminAuth required
+            await setApiKeyToObject(localVarHeaderParameter, "aicams-x-admin-secret", configuration)
+
+            if (uri !== undefined) {
+                localVarQueryParameter['uri'] = uri;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Сканирование новых файлов в папке видеофайлов
          * @summary Scan Videos
          * @param {*} [options] Override http request option.
@@ -1760,6 +1814,19 @@ export const ScannerApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ScannerApiAxiosParamCreator(configuration)
     return {
         /**
+         * Скачивание видео по ссылке
+         * @summary Download New Video
+         * @param {string} uri 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async scannerDownloadVideo(uri: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.scannerDownloadVideo(uri, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ScannerApi.scannerDownloadVideo']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Сканирование новых файлов в папке видеофайлов
          * @summary Scan Videos
          * @param {*} [options] Override http request option.
@@ -1794,6 +1861,16 @@ export const ScannerApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = ScannerApiFp(configuration)
     return {
         /**
+         * Скачивание видео по ссылке
+         * @summary Download New Video
+         * @param {string} uri 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        scannerDownloadVideo(uri: string, options?: any): AxiosPromise<object> {
+            return localVarFp.scannerDownloadVideo(uri, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Сканирование новых файлов в папке видеофайлов
          * @summary Scan Videos
          * @param {*} [options] Override http request option.
@@ -1821,6 +1898,18 @@ export const ScannerApiFactory = function (configuration?: Configuration, basePa
  * @extends {BaseAPI}
  */
 export class ScannerApi extends BaseAPI {
+    /**
+     * Скачивание видео по ссылке
+     * @summary Download New Video
+     * @param {string} uri 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ScannerApi
+     */
+    public scannerDownloadVideo(uri: string, options?: RawAxiosRequestConfig) {
+        return ScannerApiFp(this.configuration).scannerDownloadVideo(uri, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Сканирование новых файлов в папке видеофайлов
      * @summary Scan Videos

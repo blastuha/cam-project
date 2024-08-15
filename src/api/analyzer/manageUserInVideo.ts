@@ -2,14 +2,14 @@ import { analyzerApi } from '@utils/api/api';
 import React from 'react';
 
 export const manageUserInVideo = async (
-  timingId: string | undefined,
+  timingsId: string[],
   userId: string | undefined
 ) => {
   try {
-    if (timingId && userId) {
+    if (timingsId && userId) {
       const response = await analyzerApi.analyzerManageUserInVideoData({
         user_id: userId,
-        user_in_video_data_id: timingId,
+        user_in_video_data_id: timingsId,
       });
       return response.data;
     } else {

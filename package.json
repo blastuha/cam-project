@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "generateOpenApi": "npx openapi-generator-cli generate -i http://localhost:8000/openapi.json -g typescript-axios -o src/generated/openapi/main-api"
+    "generateOpenApi": "npx openapi-generator-cli generate -i https://aicams.yc-dev.bmit.ai/openapi.json -g typescript-axios -o src/generated/openapi/main-api"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",

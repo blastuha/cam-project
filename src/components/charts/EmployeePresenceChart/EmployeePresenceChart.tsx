@@ -6,37 +6,19 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  ResponsiveContainer, // Импортируем ResponsiveContainer
+  ResponsiveContainer,
 } from 'recharts';
-import { PageContainer } from '@components/containers/PageContainer/PageContainer';
 import styles from './EmployeePresenceChart.module.scss';
 import {
   UserInVideoDataGroupData,
   UserInVideoOneSchema,
 } from '@generated/openapi/main-api';
 
-// type Employee = {
-//   title: string;
-//   user_id: string | null;
-//   total_time: number;
-//   total_percent: number;
-//   timings: Timing[];
-// };
-
-// type Timing = {
-//   id: string;
-//   track_id: number;
-//   data_group_name: string;
-//   dt_start: string;
-//   dt_end: string;
-// };
-
 type Chart = {
   time: string;
   presence: number;
 };
 
-// Функция для преобразования данных в формат, подходящий для графика
 const transformDataForChart = (timings: UserInVideoOneSchema[]) => {
   const chartData: Chart[] = [];
 
@@ -81,7 +63,7 @@ export const EmployeePresenceChart = ({
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Area
-            type="monotone"
+            type="step" // Используем "step" для углов под 90 градусов
             dataKey="presence"
             stroke="#8884d8"
             fill="#c4ccf8"

@@ -12,6 +12,7 @@ export function MuiSelect({
   value,
   labelId,
   label, // Добавляем label как параметр
+  borderColor,
 }: {
   value: string;
   selectItems: {
@@ -21,6 +22,7 @@ export function MuiSelect({
   onChange: (event: SelectChangeEvent) => void;
   labelId: string;
   label: string;
+  borderColor?: string;
 }) {
   return (
     <Box sx={{ minWidth: 120, outline: 'none' }}>
@@ -35,7 +37,7 @@ export function MuiSelect({
           sx={{
             '&.MuiOutlinedInput-root': {
               '& fieldset': {
-                borderColor: '#eee', // Убирает стандартную обводку
+                borderColor: borderColor ? borderColor : 'auto', // Убирает стандартную обводку
               },
               '&:hover fieldset': {
                 borderColor: theme.palette.primary.main, // Цвет обводки при наведении
