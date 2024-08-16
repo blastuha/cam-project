@@ -3,6 +3,7 @@ import styles from './EmployeesTableBody.module.scss';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import EditIcon from '@mui/icons-material/Edit';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import { UserGetAllSchema } from 'generated/openapi/main-api';
 import { Chip } from '@mui/material';
 
@@ -11,6 +12,7 @@ type EmployeesTableBodyProps = {
   onEmployeeIcon: (id: string | undefined) => void;
   onDeleteIcon: (id: string | undefined) => void;
   onEditIcon: (id: string | undefined) => void;
+  onAnalysisIcon: (id: string | undefined) => void;
 };
 
 export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
@@ -18,6 +20,7 @@ export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
   allEmployees,
   onDeleteIcon,
   onEditIcon,
+  onAnalysisIcon,
 }) => {
   if (allEmployees.length === 0)
     return (
@@ -49,6 +52,10 @@ export const EmployeesTableBody: React.FC<EmployeesTableBodyProps> = ({
               <AccountBoxIcon
                 className={styles.actionIcon}
                 onClick={() => onEmployeeIcon(employee?.id)}
+              />
+              <BarChartIcon
+                className={styles.actionIcon}
+                onClick={() => onAnalysisIcon(employee?.id)}
               />
               <EditIcon
                 className={styles.actionIcon}

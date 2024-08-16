@@ -16,16 +16,19 @@ import Spinner from '@components/Spinner';
 import { AllVideosPage } from './pages/AllVideosPage/AllVideosPage';
 import { VideoPage } from '@pages/VideoPage/VideoPage';
 import { ErrorPage } from '@pages/ErrorPage/ErrorPage';
+import { AnalysisEmployeePage } from '@pages/AnalysisEmployeePage/AnalysisEmployeePage';
 
 function App() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
+  console.log('loading', loading);
+
   React.useEffect(() => {
     if (user && window.location.pathname === ROUTES.AUTH) {
       navigate(ROUTES.HOME);
     }
-  }, [user]);
+  }, [user, navigate]);
 
   if (loading) {
     return <Spinner />;
@@ -52,6 +55,10 @@ function App() {
           <Route path={ROUTES.EMPLOYEE_WITH_ID} element={<EmployeePage />} />
           <Route path={ROUTES.ALL_VIDEOS} element={<AllVideosPage />} />
           <Route path={ROUTES.ONE_VIDEO} element={<VideoPage />} />
+          <Route
+            path={ROUTES.EMPLOYEES_ANALYZE}
+            element={<AnalysisEmployeePage />}
+          />
 
           {/* <Route path="*" element={<Navigate to={ROUTES.ERROR} />} /> */}
         </Route>

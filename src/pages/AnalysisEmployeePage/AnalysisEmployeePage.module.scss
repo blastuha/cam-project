@@ -1,0 +1,27 @@
+.analysisForm {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.datePicker {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hoursPicker {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bodyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}

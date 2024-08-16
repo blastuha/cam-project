@@ -35,6 +35,12 @@ export const EmployeesPage = () => {
     }
   };
 
+  const handleAnalysisIcon = (employeeId: string | undefined) => {
+    if (employeeId) {
+      navigate(`/employees/analysis/${employeeId}`);
+    }
+  };
+
   const handleEditIcon = (employeeId: string | undefined) => {
     if (employeeId) {
       navigate(`/employees/edit-employee/${employeeId}`);
@@ -99,6 +105,7 @@ export const EmployeesPage = () => {
               onEmployeeIcon={handleEmpoloyeeIcon}
               onDeleteIcon={handleDialogOpen}
               onEditIcon={handleEditIcon}
+              onAnalysisIcon={handleAnalysisIcon}
             />
           </EmployeesTable>
         </ContentCard.Body>

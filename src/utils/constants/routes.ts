@@ -7,4 +7,5 @@ export const ROUTES = {
   EDIT_EMPLOYEE: 'employees/edit-employee/:id',
   ALL_VIDEOS: 'all_videos',
   ONE_VIDEO: 'video/:id',
+  EMPLOYEES_ANALYZE: 'employees/analysis/:id',
 };
