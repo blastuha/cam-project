@@ -17,6 +17,7 @@ import { AllVideosPage } from './pages/AllVideosPage/AllVideosPage';
 import { VideoPage } from '@pages/VideoPage/VideoPage';
 import { ErrorPage } from '@pages/ErrorPage/ErrorPage';
 import { AnalysisEmployeePage } from '@pages/AnalysisEmployeePage/AnalysisEmployeePage';
+import { EmployeeVideos } from '@pages/EmployeeVideos/EmployeeVideos';
 
 function App() {
   const { user, loading } = useAuth();
@@ -59,7 +60,7 @@ function App() {
             path={ROUTES.EMPLOYEES_ANALYZE}
             element={<AnalysisEmployeePage />}
           />
-
+          <Route path={ROUTES.EMPLOYEE_VIDEOS} element={<EmployeeVideos />} />
           {/* <Route path="*" element={<Navigate to={ROUTES.ERROR} />} /> */}
         </Route>
       </Routes>

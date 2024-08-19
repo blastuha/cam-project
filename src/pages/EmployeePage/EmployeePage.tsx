@@ -34,6 +34,20 @@ export const EmployeePage = () => {
     );
   }
 
+  const handleGoToVideo = () => {
+    navigate(`/employees/${id}/videos`);
+  };
+
+  console.log('employeeData', employeeData);
+
+  if (isEmployeeFetching) {
+    return (
+      <PageContainer>
+        <Spinner />
+      </PageContainer>
+    );
+  }
+
   return (
     <PageContainer>
       <ContentCard className="addEmployeeCard">
@@ -80,6 +94,9 @@ export const EmployeePage = () => {
             </div>
             <BlueButton type="button" onClick={handleEditButton}>
               Редактировать
+            </BlueButton>
+            <BlueButton type="button" onClick={handleGoToVideo}>
+              Перейти к видео с участием сотрудника
             </BlueButton>
           </div>
         </ContentCard.Body>

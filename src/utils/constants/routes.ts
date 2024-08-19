@@ -8,4 +8,5 @@ export const ROUTES = {
   ALL_VIDEOS: 'all_videos',
   ONE_VIDEO: 'video/:id',
   EMPLOYEES_ANALYZE: 'employees/analysis/:id',
+  EMPLOYEE_VIDEOS: 'employees/:id/videos',
 };

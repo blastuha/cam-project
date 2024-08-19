@@ -37,7 +37,7 @@ export const EmployeeChartArray: React.FC<EmployeePresenceChartProps> = ({
   return (
     <div className={styles.chartContainer}>
       <h2>График присутствия сотрудника на видео</h2>
-      <ResponsiveContainer height={400} width={'100%'}>
+      <ResponsiveContainer height={400} width={2000}>
         <BarChart
           data={chartData}
           margin={{ top: 20, right: 30, left: 20, bottom: 5 }}

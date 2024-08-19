@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { getUserPlotData } from '@api/analyzer/getUserPlotData';
 import { UserInVideoDataPlotData } from '@generated/openapi/main-api';
 import { EmployeeChartArray } from '@components/charts/EmployeeChartArray/EmployeeChartArray';
+import { DatePIcker } from '@components/inputs/DatePicker/DatePIcker';
 
 interface DateRange {
   startDate: Dayjs | null;
@@ -80,28 +81,18 @@ export const AnalysisEmployeePage: React.FC = () => {
         <ContentCard.Body>
           <div className={styles.bodyContent}>
             <form className={styles.analysisForm} onSubmit={handleSubmit}>
-              <div className={styles.datePicker}>
-                <p>Дата начала периода</p>
-                <DatePicker
-                  label="Выберите дату"
-                  value={selectedDate.startDate}
-                  onChange={handleStartDateChange}
-                  slots={{
-                    textField: (params) => <TextField {...params} fullWidth />,
-                  }}
-                />
-              </div>
-              <div className={styles.datePicker}>
-                <p>Дата конца периода</p>
-                <DatePicker
-                  label="Выберите дату"
-                  value={selectedDate.endDate}
-                  onChange={handleEndDateChange}
-                  slots={{
-                    textField: (params) => <TextField {...params} fullWidth />,
-                  }}
-                />
-              </div>
+              <DatePIcker
+                label="Выберите дату"
+                value={selectedDate.startDate}
+                onChange={handleStartDateChange}
+              />
+
+              <DatePIcker
+                label="Выберите дату"
+                value={selectedDate.endDate}
+                onChange={handleEndDateChange}
+              />
+
               <div className={styles.hoursPicker}>
                 <p>Количество рабочих часов</p>
                 <TextField
