@@ -73,7 +73,7 @@ export const AnalysisEmployeePage: React.FC = () => {
 
   return (
     <PageContainer>
-      <ContentCard>
+      <ContentCard className={'analysisPageCard'}>
         <ContentCard.Header>
           <ContentCard.HeaderTitle>Анализ сотрудника</ContentCard.HeaderTitle>
         </ContentCard.Header>
